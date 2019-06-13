@@ -11,15 +11,13 @@ import java.util.Set;
  * Description: com.cn.stardust.star
  * Created by Oracle on 2019/6/12 19:16
  *
- *
- *  序列化工具类,支持多线程下操作
- *  快速序列化反序列化Util
- *  通过序列化实现对象的深度复制
- *
+ * <p>
+ * 序列化工具类,支持多线程下操作
+ * 快速序列化反序列化Util
+ * 通过序列化实现对象的深度复制
+ * </p>
  */
 public class FstUtil {
-
-
 
 
     private static FSTConfiguration fstConfiguration;

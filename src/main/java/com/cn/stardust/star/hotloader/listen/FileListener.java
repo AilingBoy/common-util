@@ -16,9 +16,8 @@ import java.util.Map;
 
 public class FileListener {
 
-    private ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-
     public final static String EXT = ".java";
+    private ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
     public void listen(String filePath) throws Exception {
         FileFilter filter = FileFilterUtils.and(FileFilterUtils.trueFileFilter());
@@ -54,7 +53,7 @@ public class FileListener {
             public void onFileCreate(File file) {
                 System.out.println("onFileCreate" + file.getAbsoluteFile());
                 try {
-                    if(file.getAbsolutePath().endsWith(EXT)){
+                    if (file.getAbsolutePath().endsWith(EXT)) {
                         run(compile(file));
                     }
                 } catch (Exception e) {

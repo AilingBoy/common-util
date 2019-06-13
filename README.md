@@ -1,5 +1,12 @@
 # common-util
-常用工具集合
+###常用工具集合
+
+#### maven依赖
+&ensp;&lt;dependency&gt;<br/>
+   &ensp;&ensp;&ensp;&ensp;&lt;groupId&gt;com.github.oraclexing&lt;/groupId&gt;<br/>
+   &ensp;&ensp;&ensp;&ensp;&lt;artifactId&gt;common-utils&lt;/artifactId&gt;<br/>
+   &ensp;&ensp;&ensp;&ensp;&lt;version&gt;1.0.0&lt;/version&gt;<br/>
+&ensp;&lt;/dependency&gt;<br/>
 
 #### 1.对象复制
     . 借助 org.nustaq.serialization.FSTConfiguration类进行序列化与反序列化，实现复杂对象的深度复制
