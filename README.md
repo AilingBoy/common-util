@@ -1,5 +1,4 @@
-# common-util
-###常用工具集合
+# common-util  常用工具集合
 
 #### maven依赖
 &ensp;&lt;dependency&gt;<br/>
