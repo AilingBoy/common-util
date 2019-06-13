@@ -20,4 +20,53 @@
         * 要求是待监听的类文件需要实现Live接口
         * 当编译加载成功后，会立刻执行run()方法
         
-#### 3.待扩展更多功能 ...... &nbsp;&nbsp;&nbsp;&nbsp;;)        
+#### 3.待扩展更多功能 ...... &nbsp;&nbsp;&nbsp;&nbsp;;)
+
+#### 目录结构
+<pre>
+src
+├─main
+│  ├─java
+│  │  └─com
+│  │      └─cn
+│  │          └─stardust
+│  │              └─star
+│  │                  │  Common.java  
+│  │                  │  
+│  │                  ├─copy
+│  │                  │      FstUtil.java &ensp 对象复制util
+│  │                  │      
+│  │                  └─hotloader
+│  │                      │  HotLoader.java &ensp 动态加载入口类
+│  │                      │  
+│  │                      ├─basedo
+│  │                      │      Live.java &ensp 需要动态加载类所必须实现的接口
+│  │                      │      People.java &ensp 实现Live接口类
+│  │                      │      
+│  │                      ├─classload
+│  │                      │      FileClassLoader.java &ensp 自定义类加载器
+│  │                      │      
+│  │                      ├─compile
+│  │                      │      JCompiler.java &ensp 编译器
+│  │                      │      MemoryJavaFileManager.java &ensp 编译结果封装类
+│  │                      │      
+│  │                      └─listen
+│  │                              FileListener.java  &ensp 文件修改监听器
+│  │                              
+│  └─resources
+└─test
+    └─java
+        └─com
+            └─cn
+                └─stardust
+                    └─star
+                        │  CommonTest.java
+                        │  
+                        ├─copy
+                        │      Phone.java
+                        │      SerializeTest.java
+                        │      
+                        └─hotloader
+                                HotLoaderTest.java
+
+</pre>        
