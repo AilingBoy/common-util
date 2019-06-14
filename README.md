@@ -33,24 +33,24 @@ src
 │  │                  │  Common.java  
 │  │                  │  
 │  │                  ├─copy
-│  │                  │      FstUtil.java &ensp 对象复制util
+│  │                  │      FstUtil.java  对象复制util
 │  │                  │      
 │  │                  └─hotloader
-│  │                      │  HotLoader.java &ensp 动态加载入口类
+│  │                      │  HotLoader.java  动态加载入口类
 │  │                      │  
 │  │                      ├─basedo
-│  │                      │      Live.java &ensp 需要动态加载类所必须实现的接口
-│  │                      │      People.java &ensp 实现Live接口类
+│  │                      │      Live.java  需要动态加载类所必须实现的接口
+│  │                      │      People.java  实现Live接口类
 │  │                      │      
 │  │                      ├─classload
-│  │                      │      FileClassLoader.java &ensp 自定义类加载器
+│  │                      │      FileClassLoader.java  自定义类加载器
 │  │                      │      
 │  │                      ├─compile
-│  │                      │      JCompiler.java &ensp 编译器
-│  │                      │      MemoryJavaFileManager.java &ensp 编译结果封装类
+│  │                      │      JCompiler.java  编译器
+│  │                      │      MemoryJavaFileManager.java  编译结果封装类
 │  │                      │      
 │  │                      └─listen
-│  │                              FileListener.java  &ensp 文件修改监听器
+│  │                              FileListener.java   文件修改监听器
 │  │                              
 │  └─resources
 └─test
