@@ -9,8 +9,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Description: com.cn.stardust.star
- * Created by Oracle on 2019/6/12 19:16
+ * https://github.com/oraclexing
+ * <p>
+ *  编译结果封装类，用于输出字节码
+ *
+ * @author stardust
+ * @version 1.0.0
+ *
  */
 final class MemoryJavaFileManager extends ForwardingJavaFileManager {
 

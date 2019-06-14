@@ -6,8 +6,13 @@ import java.nio.file.Files;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Description: com.cn.stardust.star
- * Created by Oracle on 2019/6/12 19:16
+ * https://github.com/oraclexing
+ * <p>
+ *  自定义类加载器用于加载动态编译的类
+ *
+ * @author stardust
+ * @version 1.0.0
+ *
  */
 public class FileClassLoader extends ClassLoader {
 
@@ -65,7 +70,7 @@ public class FileClassLoader extends ClassLoader {
      * @throws Exception
      */
     public Class<?> loadClass(String className, byte[] bytes) throws Exception {
-        Class<?> c = null;
+        Class<?> c ;
         try {
             c = this.defineClass(className, bytes, 0, bytes.length);
             clazzMap.put(className, c);

@@ -1,21 +1,26 @@
 package com.cn.stardust.star.hotloader.basedo;
 
 /**
- * Description: com.cn.stardust.star
- * Created by Oracle on 2019/6/12 19:16
+ * https://github.com/oraclexing
+ * <p>
+ *  具体实现Live接口类
+ *  同时使用内部类Son测试加载情况
+ *
+ * @author stardust
+ * @version 1.0.0
+ *
  */
 public class People implements Live {
 
     @Override
     public void run() {
-        System.out.println("People run ......");
-        System.out.println(getName());
+        System.out.println(getName() + "run ......");
         new Son("STARK", 56).say();
     }
 
     @Override
     public String getName() {
-        return "People saying something true !";
+        return "People ";
     }
 
     class Son {

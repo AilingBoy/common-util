@@ -8,20 +8,25 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * Description: com.cn.stardust.star
- * Created by Oracle on 2019/6/12 19:16
- *
+ * https://github.com/oraclexing
  * <p>
- * 序列化工具类,支持多线程下操作
- * 快速序列化反序列化Util
- * 通过序列化实现对象的深度复制
- * </p>
+ *  序列化工具类, 支持多线程下操作,
+ *  快速序列化反序列化Util,
+ *  通过序列化实现对象的深度复制.
+ *
+ * @author stardust
+ * @version 1.0.0
+ *
  */
 public class FstUtil {
 
-
     private static FSTConfiguration fstConfiguration;
 
+    /**
+     * 使用ThreadLocal，启动多线程支持
+     *
+     * @see ThreadLocal 变量
+     */
     private static ThreadLocal<FSTConfiguration> fstConfigurationThreadLocal = new ThreadLocal();
 
     static {
@@ -69,7 +74,9 @@ public class FstUtil {
      * @return
      */
     public static <T> T copyObject(T t) {
-        if (null == t) return null;
+        if (null == t) {
+            return null;
+        }
         return unserializer(serializer(t));
     }
 
@@ -81,7 +88,9 @@ public class FstUtil {
      * @return
      */
     public static <T> List<T> copyObject(List<T> list) {
-        if (null == list) return null;
+        if (null == list) {
+            return null;
+        }
         return unserializer(serializer(list));
     }
 
@@ -93,7 +102,9 @@ public class FstUtil {
      * @return
      */
     public static <T> T[] copyObject(T[] arrs) {
-        if (null == arrs) return null;
+        if (null == arrs) {
+            return null;
+        }
         return unserializer(serializer(arrs));
     }
 
@@ -105,7 +116,9 @@ public class FstUtil {
      * @return
      */
     public static <T> Set<T> copyObject(Set<T> set) {
-        if (null == set) return null;
+        if (null == set) {
+            return null;
+        }
         return unserializer(serializer(set));
     }
 }

@@ -14,7 +14,7 @@ public class HotLoaderTest {
      */
     public static void main(String... args)throws Exception{
         FileListener fileListener = new FileListener();
-        fileListener.listen("E:\\LearnProject\\Java\\common_utils\\src\\main\\java\\com\\cn\\stardust\\star\\hotloader\\basedo\\");
+        fileListener.listen("E:\\LearnProject\\Java\\common_utils\\src\\main\\java\\com\\cn\\stardust\\star\\hotloader\\basedo\\",null);
         System.out.println("Server start successfull!");
     }
 }

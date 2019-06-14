@@ -14,32 +14,50 @@ import java.io.FileFilter;
 import java.nio.file.Files;
 import java.util.Map;
 
+/**
+ * https://github.com/oraclexing
+ * <p>
+ * 文件监听器，监听指定目录下的文件变化
+ *
+ * @author stardust
+ * @version 1.0.0
+ *
+ */
 public class FileListener {
 
     public final static String EXT = ".java";
     private ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
-    public void listen(String filePath) throws Exception {
+    /**
+     * 文件监听周期,单位毫秒
+     */
+    private static long interval = 1000;
+
+    /**
+     * 启动监听
+     *
+     * @param filePath 待监听的文件目录
+     * @param interval 监听周期
+     * @throws Exception
+     */
+    public void listen(String filePath, Long interval) throws Exception {
         FileFilter filter = FileFilterUtils.and(FileFilterUtils.trueFileFilter());
-        FileAlterationObserver filealtertionObserver = new FileAlterationObserver(filePath, filter);
-        filealtertionObserver.addListener(new FileAlterationListenerAdaptor() {
+        FileAlterationObserver observer = new FileAlterationObserver(filePath, filter);
+        observer.addListener(new FileAlterationListenerAdaptor() {
             @Override
             public void onDirectoryCreate(File directory) {
-                // TODO Auto-generated method stub
                 System.out.println("onDirectoryCreate");
                 super.onDirectoryCreate(directory);
             }
 
             @Override
             public void onDirectoryDelete(File directory) {
-                // TODO Auto-generated method stub
                 System.out.println("onDirectoryDelete");
                 super.onDirectoryDelete(directory);
             }
 
             @Override
             public void onFileChange(File file) {
-                // TODO Auto-generated method stub
                 System.out.println("onFileChange-------------->" + file.getName());
                 try {
                     run(compile(file));
@@ -64,19 +82,20 @@ public class FileListener {
 
             @Override
             public void onFileDelete(File file) {
-                // TODO Auto-generated method stub
                 System.out.println("onFileDelete----------->" + file.getAbsolutePath());
                 super.onFileDelete(file);
             }
 
             @Override
             public void onStart(FileAlterationObserver observer) {
-                // TODO Auto-generated method stub
                 super.onStart(observer);
             }
         });
-        FileAlterationMonitor monitor = new FileAlterationMonitor(1000);
-        monitor.addObserver(filealtertionObserver);
+        if (null == interval || interval < 1) {
+            interval = FileListener.interval;
+        }
+        FileAlterationMonitor monitor = new FileAlterationMonitor(interval);
+        monitor.addObserver(observer);
         monitor.start();
     }
 
@@ -95,6 +114,9 @@ public class FileListener {
         String className = null;
         for (String key : resultMap.keySet()) {
             fileClassLoader.loadClass(key, resultMap.get(key));
+            /**
+             * 跳过实现{@link Live}接口的内部类,仅仅返回外部类的全名
+             */
             if (!key.contains("$")) {
                 className = key;
             }
@@ -105,7 +127,7 @@ public class FileListener {
     /**
      * 及时执行修改后的文件
      *
-     * @param className
+     * @param className 类的名称
      * @throws Exception
      */
     private void run(String className) throws Exception {

@@ -1,8 +1,12 @@
 package com.cn.stardust.star;
 
 /**
- * Description: com.cn.stardust.star
- * Created by Oracle on 2019/6/12 19:16
+ * https://github.com/oraclexing
+ * <p>
+ *
+ * @author stardust
+ * @version 1.0.0
+ *
  */
 public class Common {
 }
