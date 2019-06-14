@@ -4,7 +4,7 @@
 &ensp;&lt;dependency&gt;<br/>
    &ensp;&ensp;&ensp;&ensp;&lt;groupId&gt;com.github.oraclexing&lt;/groupId&gt;<br/>
    &ensp;&ensp;&ensp;&ensp;&lt;artifactId&gt;common-utils&lt;/artifactId&gt;<br/>
-   &ensp;&ensp;&ensp;&ensp;&lt;version&gt;1.0.0&lt;/version&gt;<br/>
+   &ensp;&ensp;&ensp;&ensp;&lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;<br/>
 &ensp;&lt;/dependency&gt;<br/>
 
 #### 1.对象复制
