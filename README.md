@@ -1,11 +1,12 @@
 # common-util  常用工具集合
 
 #### maven依赖
-&ensp;&lt;dependency&gt;<br/>
-   &ensp;&ensp;&ensp;&ensp;&lt;groupId&gt;com.github.oraclexing&lt;/groupId&gt;<br/>
-   &ensp;&ensp;&ensp;&ensp;&lt;artifactId&gt;common-utils&lt;/artifactId&gt;<br/>
-   &ensp;&ensp;&ensp;&ensp;&lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;<br/>
-&ensp;&lt;/dependency&gt;<br/>
+    <dependency>
+             <groupId>com.github.oraclexing</groupId>
+             <artifactId>common-utils</artifactId>
+             <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+ 
 ##### 请检查maven是否启用snapshot
     maven 的安装目录 修改settings.xml文件，<profiles>节点中添加以下配置
       <profile>
