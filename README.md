@@ -6,6 +6,22 @@
    &ensp;&ensp;&ensp;&ensp;&lt;artifactId&gt;common-utils&lt;/artifactId&gt;<br/>
    &ensp;&ensp;&ensp;&ensp;&lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;<br/>
 &ensp;&lt;/dependency&gt;<br/>
+##### 请检查maven是否启用snapshot
+    maven 的安装目录 修改settings.xml文件，<profiles>节点中添加以下配置
+      <profile>
+          <id>唯一id</id>
+          <activation>
+            <activeByDefault>true</activeByDefault>
+          </activation>
+    	  <repositories>
+    		   <repository>
+    			 <id>snapshots-repo</id>
+    			 <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    			 <releases><enabled>true</enabled></releases>
+    			 <snapshots><enabled>true</enabled></snapshots>
+    		   </repository>
+    	   </repositories>
+        </profile>
 
 #### 1.对象复制
     . 借助 org.nustaq.serialization.FSTConfiguration类进行序列化与反序列化，实现复杂对象的深度复制
