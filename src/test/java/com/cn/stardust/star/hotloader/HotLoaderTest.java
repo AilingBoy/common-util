@@ -1,6 +1,7 @@
 package com.cn.stardust.star.hotloader;
 
 import com.cn.stardust.star.hotloader.listen.FileListener;
+import org.junit.Test;
 
 /**
  * Description: com.cn.stardust.star
@@ -9,10 +10,10 @@ import com.cn.stardust.star.hotloader.listen.FileListener;
 public class HotLoaderTest {
 
     /**
-     * @param args
      * @throws Exception
      */
-    public static void main(String... args)throws Exception{
+    @Test
+    public void loadTest()throws Exception{
         FileListener fileListener = new FileListener();
         fileListener.listen("E:\\LearnProject\\Java\\common_utils\\src\\main\\java\\com\\cn\\stardust\\star\\hotloader\\basedo\\",null);
         System.out.println("Server start successfull!");

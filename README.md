@@ -35,8 +35,13 @@
         * 文件的创建与修改都会触发动态编译与加载
         * 要求是待监听的类文件需要实现Live接口
         * 当文件被修改，且编译加载成功后，会立刻执行run()方法
-        
-#### 3.待扩展更多功能 ...... &nbsp;&nbsp;&nbsp;&nbsp;;)
+
+#### 3.二维码生成与解析
+    . QRCodeGen 类
+    . 支持嵌入中间logo图(本地/网络来源)
+    . 解析二维码，得到字符串内容
+               
+#### 4.待扩展更多功能 ...... &nbsp;&nbsp;&nbsp;&nbsp;;)
 
 #### 目录结构
 <pre>
@@ -52,22 +57,25 @@ src
 │  │                  ├─copy
 │  │                  │      FstUtil.java  对象复制util
 │  │                  │      
-│  │                  └─hotloader
-│  │                      │  HotLoader.java  动态加载入口类
-│  │                      │  
-│  │                      ├─basedo
-│  │                      │      Live.java  需要动态加载类所必须实现的接口
-│  │                      │      People.java  实现Live接口类
-│  │                      │      
-│  │                      ├─classload
-│  │                      │      FileClassLoader.java  自定义类加载器
-│  │                      │      
-│  │                      ├─compile
-│  │                      │      JCompiler.java  编译器
-│  │                      │      MemoryJavaFileManager.java  编译结果封装类
-│  │                      │      
-│  │                      └─listen
-│  │                              FileListener.java   文件修改监听器
+│  │                  ├─hotloader
+│  │                  │   │  HotLoader.java  动态加载入口类
+│  │                  │   │  
+│  │                  │   ├─basedo
+│  │                  │   │      Live.java  需要动态加载类所必须实现的接口
+│  │                  │   │      People.java  实现Live接口类
+│  │                  │   │      
+│  │                  │   ├─classload
+│  │                  │   │      FileClassLoader.java  自定义类加载器
+│  │                  │   │      
+│  │                  │   ├─compile
+│  │                  │   │      JCompiler.java  编译器
+│  │                  │   │      MemoryJavaFileManager.java  编译结果封装类
+│  │                  │   │      
+│  │                  │   └─listen
+│  │                  │           FileListener.java   文件修改监听器
+│  │                  │       
+│  │                  └─qrcode
+│  │                        QRCodeGen.java  二维码生成与解析
 │  │                              
 │  └─resources
 └─test
@@ -82,7 +90,10 @@ src
                         │      Phone.java
                         │      SerializeTest.java
                         │      
-                        └─hotloader
-                                HotLoaderTest.java
+                        ├─hotloader
+                        │       HotLoaderTest.java
+                        │ 
+                        └─qrcode
+                                QRCodeTest.java                                
 
 </pre>        

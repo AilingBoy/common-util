@@ -4,6 +4,7 @@ package com.cn.stardust.star.copy;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import org.junit.Test;
 import sun.misc.Unsafe;
 
 import java.io.ByteArrayOutputStream;
@@ -25,7 +26,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class SerializeTest {
 
-    public static void main(String...args)throws Exception{
+    @Test
+    public void serializeRunTest()throws Exception{
         serializeTest();
         objectCopyTest();
         listCopyTest();
@@ -36,7 +38,7 @@ public class SerializeTest {
     }
 
 
-    public static void serializeTest()throws Exception{
+    public void serializeTest()throws Exception{
         ConcurrentHashMap<String,Object> concurrentHashMap = new ConcurrentHashMap();
         concurrentHashMap.put("date",new Date());
         concurrentHashMap.put("localTime", LocalTime.now());
@@ -53,7 +55,7 @@ public class SerializeTest {
         System.out.println(phone.equals(copy));
     }
 
-    public static void objectCopyTest(){
+    public void objectCopyTest(){
         ConcurrentHashMap<String,Object> concurrentHashMap = new ConcurrentHashMap();
         concurrentHashMap.put("date",new Date());
         concurrentHashMap.put("localTime", LocalTime.now());
@@ -68,7 +70,7 @@ public class SerializeTest {
         System.out.println(phone.equals(copy));
     }
 
-    public static void listCopyTest(){
+    public void listCopyTest(){
         ConcurrentHashMap<String,Object> concurrentHashMap = new ConcurrentHashMap();
         concurrentHashMap.put("date",new Date());
         concurrentHashMap.put("localTime", LocalTime.now());
@@ -86,7 +88,7 @@ public class SerializeTest {
 
 
 
-    public static void arrayTest(){
+    public void arrayTest(){
         ConcurrentHashMap<String,Object> concurrentHashMap = new ConcurrentHashMap();
         concurrentHashMap.put("date",new Date());
         concurrentHashMap.put("localTime", LocalTime.now());
@@ -103,7 +105,7 @@ public class SerializeTest {
     }
 
 
-    public static void setCopyTest(){
+    public void setCopyTest(){
         ConcurrentHashMap<String,Object> concurrentHashMap = new ConcurrentHashMap();
         concurrentHashMap.put("date",new Date());
         concurrentHashMap.put("localTime", LocalTime.now());
@@ -124,7 +126,7 @@ public class SerializeTest {
      * 反序列化创建对象本质
      * @throws Exception
      */
-    public static void unSafeTest()throws Exception{
+    public void unSafeTest()throws Exception{
         Field field = Unsafe.class.getDeclaredField("theUnsafe");
         field.setAccessible(true);
         Unsafe unsafe = (Unsafe)field.get(null);
@@ -152,7 +154,7 @@ public class SerializeTest {
      * 反射设置属性
      * @throws Exception
      */
-    public static void reflectTest()throws Exception{
+    public void reflectTest()throws Exception{
 
         /**
          * Constructor 无法创建私有的构造方法的对象
