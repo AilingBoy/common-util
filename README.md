@@ -40,10 +40,13 @@
     . QRCodeGen 类
     . 支持嵌入中间logo图(本地/网络来源)
     . 解析二维码，得到字符串内容
+#### 3.AES加解密
+    . AESUtil 类
                
 #### 4.待扩展更多功能 ...... &nbsp;&nbsp;&nbsp;&nbsp;;)
 
 #### 目录结构
+
 <pre>
 src
 ├─main
@@ -56,7 +59,10 @@ src
 │  │                  │  
 │  │                  ├─copy
 │  │                  │      FstUtil.java  对象复制util
-│  │                  │      
+│  │                  │
+│  │                  ├─encryption
+│  │                  │      AESUtil.java  AES加解密
+│  │                  │     
 │  │                  ├─hotloader
 │  │                  │   │  HotLoader.java  动态加载入口类
 │  │                  │   │  
@@ -89,7 +95,10 @@ src
                         ├─copy
                         │      Phone.java
                         │      SerializeTest.java
-                        │      
+                        │ 
+                        ├─encryption
+                        │       AESUtilTest.java
+                        │    
                         ├─hotloader
                         │       HotLoaderTest.java
                         │ 
