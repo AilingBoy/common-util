@@ -25,7 +25,7 @@ public class ClassScanner {
     /**
      * 获取指定类的所在路径，开始扫描
      * @param clazz 待扫描包的class
-     * @return
+     * @return 返回的Package，建议仅仅对其进行读取即可，如非必要请勿修改。有可能可能导致引用错乱
      * @throws Exception
      */
     public static Package scan(Class<?> clazz)throws Exception{
