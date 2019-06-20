@@ -40,10 +40,14 @@
     . QRCodeGen 类
     . 支持嵌入中间logo图(本地/网络来源)
     . 解析二维码，得到字符串内容
-#### 3.AES加解密
+    
+#### 4.AES加解密
     . AESUtil 类
+
+#### 5.指定class的所在包扫描
+    . ClassScanner 类 ,使用方式请参考test目录下的ClassScannerTest.java 文件
                
-#### 4.待扩展更多功能 ...... &nbsp;&nbsp;&nbsp;&nbsp;;)
+#### 6.待扩展更多功能 ...... &nbsp;&nbsp;&nbsp;&nbsp;;)
 
 #### 目录结构
 
@@ -80,9 +84,14 @@ src
 │  │                  │   └─listen
 │  │                  │           FileListener.java   文件修改监听器
 │  │                  │       
-│  │                  └─qrcode
-│  │                        QRCodeGen.java  二维码生成与解析
-│  │                              
+│  │                  ├─qrcode
+│  │                  │     QRCodeGen.java  二维码生成与解析
+│  │                  │           
+│  │                  └─scanner
+│  │                        ClassScanner.java  包扫描入口
+│  │                        Clazz.java  自定义class对象，包含与Package互相引用
+│  │                        Package.java  自定义Package，包含与自身Package的父子类引用
+│  │
 │  └─resources
 └─test
     └─java
@@ -102,7 +111,10 @@ src
                         ├─hotloader
                         │       HotLoaderTest.java
                         │ 
-                        └─qrcode
-                                QRCodeTest.java                                
+                        ├─qrcode
+                        │       QRCodeTest.java  
+                        │                             
+                        └─scanner
+                                ClassScannerTest.java   
 
 </pre>        
