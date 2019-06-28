@@ -1,16 +1,16 @@
 package com.cn.stardust.star.codegen.sql;
 
+import com.beust.jcommander.internal.Lists;
 import com.cn.stardust.star.codegen.CamelCaseConvert;
-import com.cn.stardust.star.codegen.Metadata;
+import com.cn.stardust.star.codegen.ClassMetaData;
+import com.cn.stardust.star.codegen.FieldMetaData;
 import com.cn.stardust.star.codegen.typeconvert.Convert;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * https://github.com/oraclexing
@@ -49,9 +49,8 @@ final public class MysqlQuery extends Query{
     private String dbPassword;
 
 
-    public MysqlQuery(String dbIP, Integer dbPort, String dbName, String dbUsername, String dbPassword,Convert convert) {
+    public MysqlQuery(String dbIP , String dbName, String dbUsername, String dbPassword,Convert convert) {
         this.dbIP = dbIP;
-        this.dbPort = dbPort;
         this.dbName = dbName;
         this.dbUsername = dbUsername;
         this.dbPassword = dbPassword;
@@ -59,12 +58,12 @@ final public class MysqlQuery extends Query{
     }
 
     @Override
-    public Map<String, List<Metadata>> query() {
+    public List<ClassMetaData> query() {
         Connection connection = null;
-        Map<String, List<Metadata>> resultMap = new HashMap<>();
+        List<ClassMetaData> metaDataList = Lists.newArrayList();
         try {
             Class.forName(JDBC_DRIVER);
-            connection = connect("jdbc:mysql://"+dbIP+":"+dbPort+"/"+dbName,dbUsername,dbPassword);
+            connection = connect("jdbc:mysql://"+dbIP+":"+dbPort+"/"+dbName+"?characterEncoding=utf8&useSSL=false",dbUsername,dbPassword);
             Statement statement = connection.createStatement();
             /**
              * 源sql
@@ -72,7 +71,7 @@ final public class MysqlQuery extends Query{
             String source = "select COLUMN_NAME as name, DATA_TYPE as type, COLUMN_COMMENT as comment from INFORMATION_SCHEMA.Columns " +
                     " where table_name='#####' and table_schema='"+dbName+"'";
             for(String tablename : tables){
-                resultMap.put(CamelCaseConvert.toUpperCamelCase(tablename),getMetaData(statement,source.replaceAll("#####",tablename)));
+                metaDataList.add(getMetaData(statement,source.replaceAll("#####",tablename),tablename));
             }
             statement.close();
         }catch (Exception e){
@@ -82,7 +81,7 @@ final public class MysqlQuery extends Query{
         if(null != connection){
             close(connection);
         }
-        return resultMap;
+        return metaDataList;
     }
 
     /**
@@ -92,26 +91,20 @@ final public class MysqlQuery extends Query{
      * @return
      * @throws Exception
      */
-    private List<Metadata> getMetaData(Statement statement,String sql)throws Exception{
+    private ClassMetaData getMetaData(Statement statement, String sql,String tableName)throws Exception{
         ResultSet resultSet = statement.executeQuery(sql);
-        List<Metadata> metadatas = new ArrayList<>();
-        Metadata metadata;
+        ClassMetaData classMetaData = new ClassMetaData(tableName,CamelCaseConvert.toUpperCamelCase(tableName));
+        List<FieldMetaData> metadatas = new ArrayList<>();
+        FieldMetaData metadata;
         while (resultSet.next()){
-            metadata = new Metadata();
-            metadata.setName(CamelCaseConvert.toLowerCamelCase(resultSet.getString("name")));
+            metadata = new FieldMetaData();
+            metadata.setFieldName(CamelCaseConvert.toLowerCamelCase(resultSet.getString("name")));
+            metadata.setName(resultSet.getString("name"));
             metadata.setClazz(convert.getType(resultSet.getString("type")));
             metadata.setDesc(resultSet.getString("comment"));
             metadatas.add(metadata);
         }
-        return metadatas;
-    }
-
-    @Override
-    public void close(Connection con) {
-        try {
-            con.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        classMetaData.setFieldMetaDatas(metadatas);
+        return classMetaData;
     }
 }

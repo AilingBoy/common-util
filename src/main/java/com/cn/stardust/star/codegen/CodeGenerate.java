@@ -2,10 +2,12 @@ package com.cn.stardust.star.codegen;
 
 import com.cn.stardust.star.codegen.sql.MysqlQuery;
 import com.cn.stardust.star.codegen.sql.Query;
+import com.cn.stardust.star.codegen.template.GeneratorBoot;
 import com.cn.stardust.star.codegen.typeconvert.DataTypeConvert;
 import com.google.common.collect.Lists;
 
-import java.util.Map;
+import java.util.List;
+
 
 /**
  * https://github.com/oraclexing
@@ -18,11 +20,20 @@ import java.util.Map;
  */
 public class CodeGenerate {
 
+    private static ThreadLocal<Class> classThreadLocal = new ThreadLocal<>();
+
     public static void main(String args[])throws Exception{
-        Query query = new MysqlQuery("0.0.0.0",3306,
-                "0000","0000","0000",new DataTypeConvert());
-        query.setTables(Lists.newArrayList("user1","user2"));
-        Map map = query.query();
+        classThreadLocal.set(CodeGenerate.class);
+        Query query = new MysqlQuery("127.0.0.1",
+                "0","0","0",new DataTypeConvert());
+        query.setTables(Lists.newArrayList("table1","table2"));
+        List<ClassMetaData> list = query.query();
+        GeneratorBoot generatorBoot = GeneratorBoot.getInstance(list,"E:\\");
+        generatorBoot.generate();
         System.out.println("finished!");
+    }
+
+    public static Class getClassInfo(){
+        return classThreadLocal.get();
     }
 }

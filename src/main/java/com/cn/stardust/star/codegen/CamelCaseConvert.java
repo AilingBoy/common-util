@@ -8,7 +8,7 @@ package com.cn.stardust.star.codegen;
  * @author stardust
  * @version 1.0.0
  */
-public class CamelCaseConvert {
+final public class CamelCaseConvert {
 
     /**
      * 字符串转换小写驼峰
@@ -25,7 +25,7 @@ public class CamelCaseConvert {
         buffer.append(array[0]);
         if(array.length>1){
             for( int i = 1 ; i < array.length ; i++ ) {
-                buffer.append(array[i].charAt(0)+"".toUpperCase())
+                buffer.append((array[i].charAt(0)+"").toUpperCase())
                         .append(array[i].substring(1));
             }
         }
@@ -42,7 +42,7 @@ public class CamelCaseConvert {
             return null;
         }
         StringBuffer buffer = new StringBuffer();
-        buffer.append(content.charAt(0)+"".toUpperCase());
+        buffer.append((content.charAt(0)+"").toUpperCase());
         buffer.append(toLowerCamelCase(content.substring(1)));
         return buffer.toString();
     }

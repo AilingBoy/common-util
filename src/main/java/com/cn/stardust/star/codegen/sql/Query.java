@@ -1,12 +1,11 @@
 package com.cn.stardust.star.codegen.sql;
 
-import com.cn.stardust.star.codegen.Metadata;
+import com.cn.stardust.star.codegen.ClassMetaData;
 import com.cn.stardust.star.codegen.typeconvert.Convert;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
-import java.util.Map;
 
 /**
  * https://github.com/oraclexing
@@ -41,13 +40,19 @@ public abstract class Query {
      * 查询表，返回元数据集合
      * @return
      */
-    public abstract Map<String, List<Metadata>> query();
+    public abstract List<ClassMetaData> query();
 
     /**
      * 关闭连接
      * @param con
      */
-    public abstract void close(Connection con);
+    protected void close(Connection con){
+        try {
+            con.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public void setTables(List<String> tables) {
         this.tables = tables;

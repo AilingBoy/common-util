@@ -16,7 +16,7 @@ public interface BaseMapper<T> {
      * 增加
      * @param t
      */
-    void insert(T t);
+    Long insert(T t);
 
     /**
      * 删除

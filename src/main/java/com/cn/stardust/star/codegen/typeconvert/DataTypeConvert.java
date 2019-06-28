@@ -36,8 +36,6 @@ final public class DataTypeConvert extends Convert{
         dataTypeMap.put("longtext", String.class);
         dataTypeMap.put("text", String.class);
         dataTypeMap.put("time", Date.class);
-        // 建立不可变map
-        dataTypeMap = Collections.unmodifiableMap(dataTypeMap);
     }
 
 }

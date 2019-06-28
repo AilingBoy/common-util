@@ -1,10 +1,8 @@
 package com.cn.stardust.star.codegen.sql;
 
-import com.cn.stardust.star.codegen.Metadata;
+import com.cn.stardust.star.codegen.ClassMetaData;
 
-import java.sql.Connection;
 import java.util.List;
-import java.util.Map;
 
 /**
  * https://github.com/oraclexing
@@ -17,12 +15,8 @@ import java.util.Map;
 public class OracleQuery extends Query {
 
     @Override
-    public Map<String, List<Metadata>> query() {
+    public List<ClassMetaData> query() {
         return null;
     }
 
-    @Override
-    public void close(Connection con) {
-
-    }
 }

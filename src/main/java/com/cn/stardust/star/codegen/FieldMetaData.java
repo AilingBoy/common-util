@@ -7,12 +7,17 @@ package com.cn.stardust.star.codegen;
  * @author stardust
  * @version 1.0.0
  */
-final public class Metadata {
+final public class FieldMetaData {
 
     /**
      * 字段名称
      */
     private String name;
+
+    /**
+     * 属性名称
+     */
+    private String FieldName;
 
     /**
      * 字段备注
@@ -24,11 +29,18 @@ final public class Metadata {
      */
     private Class<?> clazz;
 
-    public Metadata() {
+    public FieldMetaData() {
     }
 
-    public Metadata(String name, String desc, Class<?> clazz) {
+    public FieldMetaData(String name, String desc, Class<?> clazz) {
         this.name = name;
+        this.desc = desc;
+        this.clazz = clazz;
+    }
+
+    public FieldMetaData(String name, String fieldName, String desc, Class<?> clazz) {
+        this.name = name;
+        FieldName = fieldName;
         this.desc = desc;
         this.clazz = clazz;
     }
@@ -43,6 +55,14 @@ final public class Metadata {
 
     public void setClazz(Class<?> clazz) {
         this.clazz = clazz;
+    }
+
+    public String getFieldName() {
+        return FieldName;
+    }
+
+    public void setFieldName(String fieldName) {
+        FieldName = fieldName;
     }
 
     public String getName() {
