@@ -48,6 +48,6 @@
     . ClassScanner 类 ,使用方式请参考test目录下的ClassScannerTest.java 文件
                
 #### 6.Spring 代码生成器，
-    . 包含Model,Mapper，Service,ServiceImpl 四种结构生成
+    . 包含Model,Mapper,Service,ServiceImpl 四种结构生成
     . 详细内容请参看codegen包，使用方式请参考com.cn.stardust.star.codegen.CodeGenerateTest。
 
