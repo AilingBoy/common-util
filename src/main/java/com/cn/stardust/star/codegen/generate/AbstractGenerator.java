@@ -1,10 +1,11 @@
-package com.cn.stardust.star.codegen.template;
+package com.cn.stardust.star.codegen.generate;
 
-import com.cn.stardust.star.codegen.ClassMetaData;
+import com.cn.stardust.star.codegen.metadata.ClassMetaData;
 
 /**
  * https://github.com/oraclexing
  * <p>
+ * 生成器中间的抽象类
  *
  * @author stardust
  * @version 1.0.0

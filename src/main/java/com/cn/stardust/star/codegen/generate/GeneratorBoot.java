@@ -1,6 +1,6 @@
-package com.cn.stardust.star.codegen.template;
+package com.cn.stardust.star.codegen.generate;
 
-import com.cn.stardust.star.codegen.ClassMetaData;
+import com.cn.stardust.star.codegen.metadata.ClassMetaData;
 import com.google.common.collect.Lists;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 final public class GeneratorBoot extends AbstractGenerator{
 
-    private static GeneratorBoot generatorBoot = null;
+    private static GeneratorBoot generatorBoot ;
 
 
     static {
@@ -31,9 +31,6 @@ final public class GeneratorBoot extends AbstractGenerator{
      * @return
      */
     public static GeneratorBoot getInstance(List<ClassMetaData> metaData , String outPutPath){
-        if(null == generatorBoot){
-            generatorBoot = new GeneratorBoot();
-        }
         outputPath = outPutPath;
         metaDatas.clear();
         metaDatas.addAll(metaData);
@@ -41,7 +38,11 @@ final public class GeneratorBoot extends AbstractGenerator{
         generators.addAll(Lists
                 .newArrayList(MapperGenerator.mapperGenerator,
                         ServiceGenerator.serviceGenerator,
+                        ModelGenerator.modelGenerator,
                         ServiceImplGenerator.serviceImplGenerator));
+        if(null == generatorBoot){
+            generatorBoot = new GeneratorBoot();
+        }
         return generatorBoot;
     }
 }

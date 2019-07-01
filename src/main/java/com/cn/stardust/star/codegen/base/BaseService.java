@@ -5,6 +5,7 @@ import java.util.List;
 /**
  * https://github.com/oraclexing
  * <p>
+ *  Service 的基类，被其他Service 实现
  *
  * @author stardust
  * @version 1.0.0

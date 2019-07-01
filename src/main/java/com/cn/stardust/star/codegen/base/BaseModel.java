@@ -1,15 +1,17 @@
 package com.cn.stardust.star.codegen.base;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * https://github.com/oraclexing
  * <p>
+ *  Model的基类，被继承
  *
  * @author stardust
  * @version 1.0.0
  */
-public class BaseModel {
+public class BaseModel implements Serializable {
 
     /**
      * 主键id

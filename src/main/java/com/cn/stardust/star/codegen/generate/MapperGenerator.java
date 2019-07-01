@@ -1,4 +1,4 @@
-package com.cn.stardust.star.codegen.template;
+package com.cn.stardust.star.codegen.generate;
 
 import com.cn.stardust.star.codegen.CamelCaseConvert;
 
@@ -7,6 +7,7 @@ import java.io.File;
 /**
  * https://github.com/oraclexing
  * <p>
+ * mapper 层生成器
  *
  * @author stardust
  * @version 1.0.0

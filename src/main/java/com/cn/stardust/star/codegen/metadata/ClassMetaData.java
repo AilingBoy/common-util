@@ -1,10 +1,11 @@
-package com.cn.stardust.star.codegen;
+package com.cn.stardust.star.codegen.metadata;
 
 import java.util.List;
 
 /**
  * https://github.com/oraclexing
  * <p>
+ *  class 的元数据
  *
  * @author stardust
  * @version 1.0.0

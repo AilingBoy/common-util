@@ -1,10 +1,11 @@
-package com.cn.stardust.star.codegen.template;
+package com.cn.stardust.star.codegen.generate;
 
 import com.google.common.base.Strings;
 
 /**
  * https://github.com/oraclexing
  * <p>
+ * 生成器中，常见字符集合
  *
  * @author stardust
  * @version 1.0.0

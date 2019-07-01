@@ -2,8 +2,8 @@ package com.cn.stardust.star.codegen.sql;
 
 import com.beust.jcommander.internal.Lists;
 import com.cn.stardust.star.codegen.CamelCaseConvert;
-import com.cn.stardust.star.codegen.ClassMetaData;
-import com.cn.stardust.star.codegen.FieldMetaData;
+import com.cn.stardust.star.codegen.metadata.ClassMetaData;
+import com.cn.stardust.star.codegen.metadata.FieldMetaData;
 import com.cn.stardust.star.codegen.typeconvert.Convert;
 
 import java.sql.Connection;
@@ -15,6 +15,8 @@ import java.util.List;
 /**
  * https://github.com/oraclexing
  * <p>
+ *  Mysql 查询器
+ *
  *
  * @author stardust
  * @version 1.0.0
@@ -57,6 +59,10 @@ final public class MysqlQuery extends Query{
         this.convert = convert;
     }
 
+    /**
+     * 查询元数据集合
+     * @return 表的元数据集合
+     */
     @Override
     public List<ClassMetaData> query() {
         Connection connection = null;

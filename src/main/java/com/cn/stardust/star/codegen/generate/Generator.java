@@ -1,6 +1,6 @@
-package com.cn.stardust.star.codegen.template;
+package com.cn.stardust.star.codegen.generate;
 
-import com.cn.stardust.star.codegen.ClassMetaData;
+import com.cn.stardust.star.codegen.metadata.ClassMetaData;
 import com.cn.stardust.star.codegen.CodeGenerate;
 
 import java.io.File;
@@ -11,14 +11,23 @@ import java.util.List;
 /**
  * https://github.com/oraclexing
  * <p>
+ * 生成器接口
  *
  * @author stardust
  * @version 1.0.0
  */
 public interface Generator {
 
+    /**
+     * 具体生成器(baseModel,Mapper,Service,ServiceImpl)
+     * 请参考{@link GeneratorBoot#getInstance }对此进行赋值
+     */
     List<Generator> generators = new ArrayList<>();
 
+    /**
+     * 待生成的class元数据
+     * 详细结构请参考{@link ClassMetaData}
+     */
     List<ClassMetaData> metaDatas = new ArrayList<>();
 
     void setClassMetaData(ClassMetaData classMetaData);
@@ -91,6 +100,7 @@ public interface Generator {
                 genWriteToFile(f);
             })
         );
+        System.out.println("************* Generate successful *************");
     }
 
     /**

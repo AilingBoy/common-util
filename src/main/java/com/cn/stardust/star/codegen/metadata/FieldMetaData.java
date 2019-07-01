@@ -1,9 +1,10 @@
-package com.cn.stardust.star.codegen;
+package com.cn.stardust.star.codegen.metadata;
 
 /**
  * https://github.com/oraclexing
  * <p>
- *  元数据
+ *  Field 的元数据
+ *
  * @author stardust
  * @version 1.0.0
  */

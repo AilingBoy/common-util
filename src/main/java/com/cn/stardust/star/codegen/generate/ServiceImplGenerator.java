@@ -1,4 +1,4 @@
-package com.cn.stardust.star.codegen.template;
+package com.cn.stardust.star.codegen.generate;
 
 import com.cn.stardust.star.codegen.CamelCaseConvert;
 
@@ -7,6 +7,7 @@ import java.io.File;
 /**
  * https://github.com/oraclexing
  * <p>
+ *  ServiceImpl 层的生成器
  *
  * @author stardust
  * @version 1.0.0
@@ -26,7 +27,8 @@ final public class ServiceImplGenerator extends AbstractGenerator {
 
     @Override
     public String getClassInfo() {
-        return "public class "+ classMetaData.getClassName() +"ServiceImpl implement "+classMetaData.getClassName()+"Service"
+        return  "@Service"+Character.LINE_FEED +
+                "public class "+ classMetaData.getClassName() +"ServiceImpl implements "+classMetaData.getClassName()+"Service"
                 + Character.OPEN_BRACE
                 + Character.getLineFeed(2);
     }
@@ -93,7 +95,7 @@ final public class ServiceImplGenerator extends AbstractGenerator {
                 + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()) + Character.COLSE_PAREN
                 + "throws Exception " + Character.OPEN_BRACE + Character.LINE_FEED
                 + Character.getSpace(8) + "return" + Character.SPACE + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
-                + "Mapper.select"+Character.OPEN_PAREN + classMetaData.getClassName() + Character.SPACE
+                + "Mapper.select"+Character.OPEN_PAREN
                 + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()) + Character.COLSE_PAREN
                 + Character.SEMICOLON + Character.LINE_FEED
                 + Character.getSpace(4) + Character.CLOSE_BRACE;
@@ -105,7 +107,7 @@ final public class ServiceImplGenerator extends AbstractGenerator {
                 +"get(Long id)throws Exception" + Character.SPACE + Character.OPEN_BRACE + Character.LINE_FEED
                 + Character.getSpace(8) + "return" + Character.SPACE
                 + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
-                + "Mapper.get(id)"
+                + "Mapper.selectById(id)"
                 + Character.SEMICOLON + Character.LINE_FEED
                 + Character.getSpace(4) + Character.CLOSE_BRACE;
     }

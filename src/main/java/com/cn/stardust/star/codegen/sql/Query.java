@@ -1,6 +1,6 @@
 package com.cn.stardust.star.codegen.sql;
 
-import com.cn.stardust.star.codegen.ClassMetaData;
+import com.cn.stardust.star.codegen.metadata.ClassMetaData;
 import com.cn.stardust.star.codegen.typeconvert.Convert;
 
 import java.sql.Connection;
@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * https://github.com/oraclexing
  * <p>
+ * SQL 查询接口
  *
  * @author stardust
  * @version 1.0.0

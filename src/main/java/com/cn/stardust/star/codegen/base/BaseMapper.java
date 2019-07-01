@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * https://github.com/oraclexing
  * <p>
+ * Mapper 的基类，被其他mapper 实现
  *
  * @author stardust
  * @version 1.0.0

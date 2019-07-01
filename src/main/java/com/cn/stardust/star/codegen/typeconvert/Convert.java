@@ -5,6 +5,7 @@ import java.util.Map;
 /**
  * https://github.com/oraclexing
  * <p>
+ * 类型转换器
  *
  * @author stardust
  * @version 1.0.0
