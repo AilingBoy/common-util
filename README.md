@@ -47,74 +47,7 @@
 #### 5.指定class的所在包扫描
     . ClassScanner 类 ,使用方式请参考test目录下的ClassScannerTest.java 文件
                
-#### 6.待扩展更多功能 ...... &nbsp;&nbsp;&nbsp;&nbsp;;)
+#### 6.Spring 代码生成器，
+    . 包含Model,Mapper，Service,ServiceImpl 四种结构生成
+    . 详细内容请参看codegen包，使用方式请参考com.cn.stardust.star.codegen.CodeGenerateTest。
 
-#### 目录结构
-
-<pre>
-src
-├─main
-│  ├─java
-│  │  └─com
-│  │      └─cn
-│  │          └─stardust
-│  │              └─star
-│  │                  │  Common.java  
-│  │                  │  
-│  │                  ├─copy
-│  │                  │      FstUtil.java  对象复制util
-│  │                  │
-│  │                  ├─encryption
-│  │                  │      AESUtil.java  AES加解密
-│  │                  │     
-│  │                  ├─hotloader
-│  │                  │   │  HotLoader.java  动态加载入口类
-│  │                  │   │  
-│  │                  │   ├─basedo
-│  │                  │   │      Live.java  需要动态加载类所必须实现的接口
-│  │                  │   │      People.java  实现Live接口类
-│  │                  │   │      
-│  │                  │   ├─classload
-│  │                  │   │      FileClassLoader.java  自定义类加载器
-│  │                  │   │      
-│  │                  │   ├─compile
-│  │                  │   │      JCompiler.java  编译器
-│  │                  │   │      MemoryJavaFileManager.java  编译结果封装类
-│  │                  │   │      
-│  │                  │   └─listen
-│  │                  │           FileListener.java   文件修改监听器
-│  │                  │       
-│  │                  ├─qrcode
-│  │                  │     QRCodeGen.java  二维码生成与解析
-│  │                  │           
-│  │                  └─scanner
-│  │                        ClassScanner.java  包扫描入口
-│  │                        Clazz.java  自定义class对象，包含与Package互相引用
-│  │                        Package.java  自定义Package，包含与自身Package的父子类引用
-│  │
-│  └─resources
-└─test
-    └─java
-        └─com
-            └─cn
-                └─stardust
-                    └─star
-                        │  CommonTest.java
-                        │  
-                        ├─copy
-                        │      Phone.java
-                        │      SerializeTest.java
-                        │ 
-                        ├─encryption
-                        │       AESUtilTest.java
-                        │    
-                        ├─hotloader
-                        │       HotLoaderTest.java
-                        │ 
-                        ├─qrcode
-                        │       QRCodeTest.java  
-                        │                             
-                        └─scanner
-                                ClassScannerTest.java   
-
-</pre>        
