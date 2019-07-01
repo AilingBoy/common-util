@@ -90,8 +90,7 @@ public interface Generator {
     String getFileName();
 
     /**
-     * 入口
-     * @return
+     * 生成器入口
      */
     default void generate(){
         metaDatas.forEach(e ->

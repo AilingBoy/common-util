@@ -71,7 +71,7 @@ public class CodeGenerate {
 
     /**
      * 开始生成
-     * @FIXME 注意：生成后的所有类都会和该class 处于同一个包下面，因此请尽可能将使用的clazz所在包直接复制path作为 outputPath进行传递
+     * 注意：生成后的所有类都会和该class 处于同一个包下面，因此请尽可能将使用的clazz所在包直接复制path作为 outputPath进行传递
      * @param tables 待自动生成的表名称集合
      * @param outputPath 输出文件位置
      * @param clazz 外部调用的启动类class

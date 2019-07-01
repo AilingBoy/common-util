@@ -19,7 +19,7 @@ public abstract class AbstractGenerator implements Generator{
 
     /**
      * 输出文件位置
-     * @param classMetaData
+     * classMetaData
      */
     protected static String outputPath;
 
