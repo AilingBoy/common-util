@@ -130,7 +130,7 @@ final class MapperGenerator extends AbstractGenerator {
         buffer.append(Character.getSpace(4) + "@Override"+Character.LINE_FEED);
         buffer.append(Character.getSpace(4) + "@Select(\"select * from ");
         buffer.append(classMetaData.getTableName()+" where archive = 0 and id = #{id}\")");
-        buffer.append(Character.SEMICOLON + Character.LINE_FEED);
+        buffer.append(Character.LINE_FEED);
         buffer.append(Character.getSpace(4) + classMetaData.getClassName() + Character.SPACE +"selectById(Long id);");
         return buffer.toString();
     }
