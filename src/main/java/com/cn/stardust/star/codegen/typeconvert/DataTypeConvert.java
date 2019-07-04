@@ -3,7 +3,6 @@ package com.cn.stardust.star.codegen.typeconvert;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashMap;
 
 /**
  * https://github.com/oraclexing
@@ -13,13 +12,14 @@ import java.util.HashMap;
  * @author stardust
  * @version 1.0.0
  */
-final public class DataTypeConvert extends Convert{
+final public class DataTypeConvert implements Convert{
 
     /**
-     * 初始化转换器必须要对父类属性实例化
+     * 转换器必须要对父类属性实例化
      */
-    {
-        dataTypeMap = new HashMap<>();
+    @Override
+    public void initialize() {
+        dataTypeMap.clear();
         dataTypeMap.put("bigint",Long.class);
         dataTypeMap.put("char",String.class);
         dataTypeMap.put("varchar",String.class);
@@ -36,5 +36,4 @@ final public class DataTypeConvert extends Convert{
         dataTypeMap.put("text", String.class);
         dataTypeMap.put("time", Date.class);
     }
-
 }

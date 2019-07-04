@@ -1,5 +1,6 @@
 package com.cn.stardust.star.codegen.typeconvert;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -10,20 +11,30 @@ import java.util.Map;
  * @author stardust
  * @version 1.0.0
  */
-public abstract class Convert {
+public interface Convert {
 
     /**
      * 类型转换器,在转换中需要
      * 可自定义实现转换类，并继承该类，对该dataTypeMap必须初始化
      */
-    protected Map<String,Class<?>> dataTypeMap;
+    Map<String,Class<?>> dataTypeMap = new HashMap<>();
+
+
+    /**
+     * 初始化dataTypeMap
+     */
+    void initialize();
 
     /**
      * 根据数据库字段类型获取java数据库类型
      * @param key
      * @return
      */
-    final public Class<?> getType(String key){
+    default Class<?> getType(String key){
+        // 若map为空，则进行初始化
+        if(dataTypeMap.isEmpty()){
+            initialize();
+        }
         return dataTypeMap.get(key);
     }
 }
