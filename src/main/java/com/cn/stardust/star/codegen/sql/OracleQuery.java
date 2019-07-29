@@ -69,15 +69,11 @@ public class OracleQuery extends Query {
             Class.forName(JDBC_DRIVER);
             connection = connect("jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS =(PROTOCOL = TCP)(HOST = "+dbIP+")(PORT = "+dbPort+"))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = "+dbName+")))",dbUsername,dbPassword);
             Statement statement = connection.createStatement();
-            String source = " SELECT USER_TAB_COLS.COLUMN_NAME  as name,\n" +
-                            "  USER_TAB_COLS.DATA_TYPE    as type,\n" +
-                            "  user_col_comments.comments as comment\n" +
-                            "  FROM USER_TAB_COLS\n" +
-                            "    left join user_tab_comments utc\n" +
-                            "      on USER_TAB_COLS.TABLE_NAME = utc.table_name\n" +
-                            "    inner join user_col_comments\n" +
-                            "      on user_col_comments.TABLE_NAME = USER_TAB_COLS.TABLE_NAME\n" +
-                            "    and user_col_comments.COLUMN_NAME = USER_TAB_COLS.COLUMN_NAME and USER_TAB_COLS.TABLE_NAME = '#####';";
+            String source = "SELECT USER_TAB_COLS.COLUMN_NAME as name,Lower(USER_TAB_COLS.DATA_TYPE) as \"type\"," +
+                    "user_col_comments.comments as \"comment\" " +
+                    "from USER_TAB_COLS left join user_tab_comments utc on USER_TAB_COLS.TABLE_NAME = utc.table_name " +
+                    "inner join user_col_comments on user_col_comments.TABLE_NAME = USER_TAB_COLS.TABLE_NAME " +
+                    "and user_col_comments.COLUMN_NAME = USER_TAB_COLS.COLUMN_NAME and USER_TAB_COLS.TABLE_NAME = '#####'";
             for(String tablename : tables){
                 metaDataList.add(getMetaData(statement,source.replaceAll("#####",tablename),tablename));
             }
