@@ -2,6 +2,7 @@ package com.cn.stardust.star.codegen;
 
 import com.cn.stardust.star.codegen.metadata.ClassMetaData;
 import com.cn.stardust.star.codegen.sql.MysqlQuery;
+import com.cn.stardust.star.codegen.sql.OracleQuery;
 import com.cn.stardust.star.codegen.sql.Query;
 import com.cn.stardust.star.codegen.generate.GeneratorBoot;
 import com.cn.stardust.star.codegen.typeconvert.Convert;
@@ -45,8 +46,25 @@ public class CodeGenerate {
      * @param convert sql 到java 的类型转换器 ， 可自定义Convert实现类，传入即可
      * @return
      */
-    public static CodeGenerate getInstance(String dbIp , String dbName , String dbUserName , String dbPassword , Convert convert){
+    public static CodeGenerate getMysqlInstance(String dbIp , String dbName , String dbUserName , String dbPassword , Convert convert){
         query  = new MysqlQuery(dbIp,dbName,dbUserName,dbPassword,convert);
+        if( null == codeGenerate ){
+            codeGenerate = new CodeGenerate();
+        }
+        return codeGenerate;
+    }
+
+    /**
+     * 构造生成器
+     * @param dbIp 数据库地址
+     * @param dbName 数据库名称
+     * @param dbUserName 数据库用户名
+     * @param dbPassword 数据库密码
+     * @param convert sql 到java 的类型转换器 ， 可自定义Convert实现类，传入即可
+     * @return
+     */
+    public static CodeGenerate getOracleInstance(String dbIp , String dbName , String dbUserName , String dbPassword , Convert convert){
+        query  = new OracleQuery(dbIp,dbName,dbUserName,dbPassword,convert);
         if( null == codeGenerate ){
             codeGenerate = new CodeGenerate();
         }
@@ -61,8 +79,24 @@ public class CodeGenerate {
      * @param dbPassword 数据库密码
      * @return
      */
-    public static CodeGenerate getInstance(String dbIp , String dbName , String dbUserName , String dbPassword){
+    public static CodeGenerate getMysqlInstance(String dbIp , String dbName , String dbUserName , String dbPassword){
         query  = new MysqlQuery(dbIp,dbName,dbUserName,dbPassword,new DataTypeConvert());
+        if( null == codeGenerate ){
+            codeGenerate = new CodeGenerate();
+        }
+        return codeGenerate;
+    }
+
+    /**
+     * 构造生成器
+     * @param dbIp 数据库地址
+     * @param dbName 数据库名称
+     * @param dbUserName 数据库用户名
+     * @param dbPassword 数据库密码
+     * @return
+     */
+    public static CodeGenerate getOracleInstance(String dbIp , String dbName , String dbUserName , String dbPassword){
+        query  = new OracleQuery(dbIp,dbName,dbUserName,dbPassword,new DataTypeConvert());
         if( null == codeGenerate ){
             codeGenerate = new CodeGenerate();
         }
