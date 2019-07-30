@@ -22,7 +22,8 @@ final class MapperGenerator extends AbstractGenerator {
     public String getImportInfo() {
         return "import org.apache.ibatis.annotations.*;"+ Character.LINE_FEED +
                "import org.apache.ibatis.mapping.StatementType;" + Character.LINE_FEED +
-               "import com.cn.stardust.star.codegen.base.BaseMapper;" + Character.LINE_FEED +
+               "import com.cn.hz.info.manager.model." + classMetaData.getClassName() +";"+ Character.LINE_FEED +
+//               "import com.cn.stardust.star.codegen.base.BaseMapper;" + Character.LINE_FEED +
                "import java.util.List;"+Character.getLineFeed(2);
     }
 
@@ -63,16 +64,16 @@ final class MapperGenerator extends AbstractGenerator {
         buffer.append(Character.getSpace(4) + "@Override"+Character.LINE_FEED);
         buffer.append(Character.getSpace(4) + "@Insert(\"insert into ");
         buffer.append(classMetaData.getTableName()+"(");
-        buffer.append(classMetaData.getFieldMetaDatas().stream().map(e ->"`"+e.getName()+"`").reduce((a,b)->a+","+b).get());
+        buffer.append(classMetaData.getFieldMetaDatas().stream().map(e -> e.getName()).reduce((a,b)->a+","+b).get());
         buffer.append(") ");
-        buffer.append("value(");
+        buffer.append("values(");
         buffer.append(classMetaData.getFieldMetaDatas().stream().map(e ->"#{"+e.getFieldName()+"}").reduce((a,b)->a+","+b).get());
         buffer.append(")");
         buffer.append("\")");
         buffer.append(Character.LINE_FEED);
-        buffer.append(Character.getSpace(4) + "@SelectKey(before=false,keyProperty=\"id\",resultType=Long.class,statementType= StatementType.STATEMENT,statement=\"SELECT LAST_INSERT_ID() AS id\")");
-        buffer.append(Character.LINE_FEED);
-        buffer.append(Character.getSpace(4) + "Long insert(");
+//        buffer.append(Character.getSpace(4) + "@SelectKey(before=false,keyProperty=\"id\",resultType=Long.class,statementType= StatementType.STATEMENT,statement=\"SELECT LAST_INSERT_ID() AS id\")");
+//        buffer.append(Character.LINE_FEED);
+        buffer.append(Character.getSpace(4) + "String insert(");
         buffer.append(classMetaData.getClassName());
         buffer.append(Character.SPACE + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()));
         buffer.append(");");
@@ -87,7 +88,7 @@ final class MapperGenerator extends AbstractGenerator {
         buffer.append(classMetaData.getTableName()+",");
         buffer.append(" set update_at = now(),archive = 1 where id = #{id} and archive = 0 \")");
         buffer.append(Character.LINE_FEED);
-        buffer.append(Character.getSpace(4) + "Boolean delete(Long id);");
+        buffer.append(Character.getSpace(4) + "void delete(String id);");
         return buffer.toString();
     }
 
@@ -102,9 +103,9 @@ final class MapperGenerator extends AbstractGenerator {
         buffer.append(Character.LINE_FEED);
         buffer.append(Character.getSpace(12) + "// TODO ADD MORE CONDITIONS! ");
         buffer.append(Character.LINE_FEED);
-        buffer.append(Character.getSpace(12) + "\"update_at = now() where archive = 0 and id = #{id} </script>\"})");
+        buffer.append(Character.getSpace(12) + "\"update_date = to_date(#{updateDateStr},'yyyy-mm-dd HH24:MI:SS') where archive = 0 and id = #{id} </script>\"})");
         buffer.append(Character.LINE_FEED);
-        buffer.append(Character.getSpace(4) + "Boolean update" + Character.OPEN_PAREN + classMetaData.getClassName() + Character.SPACE
+        buffer.append(Character.getSpace(4) + "void update" + Character.OPEN_PAREN + classMetaData.getClassName() + Character.SPACE
                 + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
                 + Character.COLSE_PAREN + Character.SEMICOLON);
         return buffer.toString();
@@ -137,7 +138,7 @@ final class MapperGenerator extends AbstractGenerator {
         buffer.append(Character.getSpace(4) + "@Select(\"select * from ");
         buffer.append(classMetaData.getTableName()+" where archive = 0 and id = #{id}\")");
         buffer.append(Character.LINE_FEED);
-        buffer.append(Character.getSpace(4) + classMetaData.getClassName() + Character.SPACE +"selectById(Long id);");
+        buffer.append(Character.getSpace(4) + classMetaData.getClassName() + Character.SPACE +"selectById(String id);");
         return buffer.toString();
     }
 

@@ -20,8 +20,9 @@ final public class ServiceGenerator extends AbstractGenerator{
 
     @Override
     public String getImportInfo() {
-        return "import com.cn.stardust.star.codegen.base.BaseService;" + Character.LINE_FEED+
-               "import java.util.List;"+Character.getLineFeed(2);
+//        return "import com.cn.stardust.star.codegen.base.BaseService;" + Character.LINE_FEED+
+        return "import com.cn.hz.info.manager.model." + classMetaData.getClassName() +";"+ Character.LINE_FEED +
+             "import java.util.List;"+Character.getLineFeed(2);
     }
 
     @Override
@@ -42,7 +43,7 @@ final public class ServiceGenerator extends AbstractGenerator{
         StringBuffer buffer = new StringBuffer();
 
         buffer.append(Character.getSpace(4) + "@Override"+Character.LINE_FEED);
-        buffer.append(Character.getSpace(4) + "Long add("+classMetaData.getClassName()+Character.SPACE
+        buffer.append(Character.getSpace(4) + "String add("+classMetaData.getClassName()+Character.SPACE
                 + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()) + ") throws Exception;");
         buffer.append(Character.getLineFeed(2));
 
@@ -52,7 +53,7 @@ final public class ServiceGenerator extends AbstractGenerator{
         buffer.append(Character.getLineFeed(2));
 
         buffer.append(Character.getSpace(4) + "@Override"+Character.LINE_FEED);
-        buffer.append(Character.getSpace(4) + "Boolean remove(Long id) throws Exception;");
+        buffer.append(Character.getSpace(4) + "Boolean remove(String id) throws Exception;");
         buffer.append(Character.getLineFeed(2));
 
 
@@ -66,7 +67,7 @@ final public class ServiceGenerator extends AbstractGenerator{
 
         buffer.append(Character.getSpace(4) + "@Override"+Character.LINE_FEED);
         buffer.append(Character.getSpace(4) + classMetaData.getClassName()+Character.SPACE
-                + "get(Long id) throws Exception;");
+                + "get(String id) throws Exception;");
         buffer.append(Character.getLineFeed(2));
         return buffer.toString();
     }

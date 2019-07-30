@@ -22,6 +22,7 @@ final public class ServiceImplGenerator extends AbstractGenerator {
     public String getImportInfo() {
         return "import org.springframework.beans.factory.annotation.Autowired;" + Character.LINE_FEED +
                "import org.springframework.stereotype.Service;" + Character.LINE_FEED +
+               "import com.cn.hz.info.manager.model." + classMetaData.getClassName() +";"+ Character.LINE_FEED +
                "import java.util.List;"+Character.getLineFeed(2);
     }
 
@@ -54,7 +55,7 @@ final public class ServiceImplGenerator extends AbstractGenerator {
 
     private String getAddMethod(){
         return Character.getSpace(4)+"@Override"+Character.LINE_FEED
-                + Character.getSpace(4)+"public Long add(" + classMetaData.getClassName() + Character.SPACE
+                + Character.getSpace(4)+"public String add(" + classMetaData.getClassName() + Character.SPACE
                 + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()) + Character.COLSE_PAREN
                 + "throws Exception " + Character.OPEN_BRACE + Character.LINE_FEED
                 + Character.getSpace(8) + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
@@ -67,7 +68,7 @@ final public class ServiceImplGenerator extends AbstractGenerator {
 
     private String getRemoveMethod(){
         return Character.getSpace(4) + "@Override"+Character.LINE_FEED
-                + Character.getSpace(4) + "public Boolean remove(Long id)throws Exception " + Character.OPEN_BRACE + Character.LINE_FEED
+                + Character.getSpace(4) + "public Boolean remove(String id)throws Exception " + Character.OPEN_BRACE + Character.LINE_FEED
                 + Character.getSpace(8) +CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
                 + "Mapper.delete(id)"
                 + Character.SEMICOLON + Character.LINE_FEED
@@ -104,7 +105,7 @@ final public class ServiceImplGenerator extends AbstractGenerator {
     private String getSelectByIdMethod(){
         return Character.getSpace(4) + "@Override"+Character.LINE_FEED
                 + Character.getSpace(4) + "public" + Character.SPACE + classMetaData.getClassName()+Character.SPACE
-                +"get(Long id)throws Exception" + Character.SPACE + Character.OPEN_BRACE + Character.LINE_FEED
+                +"get(String id)throws Exception" + Character.SPACE + Character.OPEN_BRACE + Character.LINE_FEED
                 + Character.getSpace(8) + "return" + Character.SPACE
                 + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
                 + "Mapper.selectById(id)"
