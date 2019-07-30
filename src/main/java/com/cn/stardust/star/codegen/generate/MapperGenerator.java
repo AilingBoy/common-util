@@ -40,8 +40,8 @@ final class MapperGenerator extends AbstractGenerator {
         StringBuffer buffer = new StringBuffer();
         buffer.append(Character.getSpace(4)+"String baseColum = \"");
         classMetaData.getFieldMetaDatas().forEach(e -> buffer.append(e.getName()+','));
-        buffer.append("\"");
-        buffer.setCharAt(buffer.length()-1,';');
+        buffer.setCharAt(buffer.length()-1,'\"');
+        buffer.append(";");
         buffer.append(Character.getLineFeed(2));
         return buffer.toString();
     }
