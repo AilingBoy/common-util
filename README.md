@@ -51,7 +51,7 @@
     . 包含Model,Mapper,Service,ServiceImpl 四种结构生成
     . 详细内容请参看codegen包，使用方式请参考com.cn.stardust.star.codegen.CodeGenerateTest。
 
-#### 6.Json对象复制，
+#### 7.Json对象复制，
     . 基于alibaba fastjson 的 JSONObject/JSONArray 对象复制,确保待复制模板的格式正确即可.
     . 详细内容请参看com.cn.stardust.star.copy.JsonUtil。
 
