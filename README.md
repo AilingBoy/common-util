@@ -25,9 +25,9 @@
         </profile>
 
 #### 1.对象复制
-    . 借助 org.nustaq.serialization.FSTConfiguration类进行序列化与反序列化，实现复杂对象的深度复制
     . FstUtil 类静态方法使用泛型，美化调用方(防止写过多的强制类型转换代码)
-
+        > 借助 org.nustaq.serialization.FSTConfiguration类进行序列化与反序列化，实现复杂对象的深度复制
+    . JsonUtil Json 对象复制，基于alibaba fastjson 的 JSONObject/JSONArray 对象复制,确保待复制模板的格式正确即可.
 
 #### 2.动态加载
     . HotLoader 静态方法start()为入口函数
@@ -51,7 +51,4 @@
     . 包含Model,Mapper,Service,ServiceImpl 四种结构生成
     . 详细内容请参看codegen包，使用方式请参考com.cn.stardust.star.codegen.CodeGenerateTest。
 
-#### 7.Json对象复制，
-    . 基于alibaba fastjson 的 JSONObject/JSONArray 对象复制,确保待复制模板的格式正确即可.
-    . 详细内容请参看com.cn.stardust.star.copy.JsonUtil。
 
