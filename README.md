@@ -25,9 +25,9 @@
         </profile>
 
 #### 1.对象复制
-    . 借助 org.nustaq.serialization.FSTConfiguration类进行序列化与反序列化，实现复杂对象的深度复制
     . FstUtil 类静态方法使用泛型，美化调用方(防止写过多的强制类型转换代码)
-
+        > 借助 org.nustaq.serialization.FSTConfiguration类进行序列化与反序列化，实现复杂对象的深度复制
+    . JsonUtil Json 对象复制，基于alibaba fastjson 的 JSONObject/JSONArray 对象复制,确保待复制模板的格式正确即可.
 
 #### 2.动态加载
     . HotLoader 静态方法start()为入口函数
@@ -50,4 +50,11 @@
 #### 6.Spring 代码生成器，
     . 包含Model,Mapper,Service,ServiceImpl 四种结构生成
     . 详细内容请参看codegen包，使用方式请参考com.cn.stardust.star.codegen.CodeGenerateTest。
+
+#### 6.Mysql 数据库表结构导出Word，
+    . 包含表头信息（表名称,备注,存储引擎,字符集,建表日期）
+    . 包含字段信息(字段名,类型,是否为空,主键,备注,默认)
+    . 详细内容请参看dbexport包，使用方式请参考com.cn.stardust.star.dbexport.Export2Word类。
+    . 注： 目前只支持mysql数据库的导出。oracle数据库，后期在加入。
+
 
