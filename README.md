@@ -51,4 +51,10 @@
     . 包含Model,Mapper,Service,ServiceImpl 四种结构生成
     . 详细内容请参看codegen包，使用方式请参考com.cn.stardust.star.codegen.CodeGenerateTest。
 
+#### 6.Mysql 数据库表结构导出Word，
+    . 包含表头信息（表名称,备注,存储引擎,字符集,建表日期）
+    . 包含字段信息(字段名,类型,是否为空,主键,备注,默认)
+    . 详细内容请参看dbexport包，使用方式请参考com.cn.stardust.star.dbexport.Export2Word类。
+    . 注： 目前只支持mysql数据库的导出。oracle数据库，后期在加入。
+
 

@@ -1,5 +1,6 @@
 package com.cn.stardust.star.dbexport.sql;
 
+import com.cn.stardust.star.dbexport.metadata.DatabaseMetadata;
 import com.cn.stardust.star.dbexport.metadata.TableMetadata;
 
 import java.sql.Connection;
@@ -32,7 +33,7 @@ public interface Query {
      * 查询表，返回元数据集合
      * @return
      */
-    List<TableMetadata> query();
+    DatabaseMetadata query();
 
     /**
      * 关闭连接
