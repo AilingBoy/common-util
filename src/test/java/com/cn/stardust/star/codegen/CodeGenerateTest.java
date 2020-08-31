@@ -17,7 +17,7 @@ public class CodeGenerateTest {
 
     @Test
     public void generateTest()throws Exception{
-            CodeGenerate codeGenerate = CodeGenerate.getMysqlInstance("127.0.0.1",
+            CodeGenerate codeGenerate = CodeGenerate.getMysqlInstance("jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai",
                     "common_data","common","common",new DataTypeConvert());
         codeGenerate.generate(Lists.newArrayList("user1","websites1"),"common_utils\\src\\main\\java\\com\\cn\\stardust\\star", Common.class);
     }

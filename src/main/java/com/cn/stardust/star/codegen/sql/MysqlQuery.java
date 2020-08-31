@@ -23,17 +23,12 @@ import java.util.List;
  */
 final public class MysqlQuery extends Query{
 
-    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 
     /**
      * 数据库ip
      */
-    private String dbIP;
-
-    /**
-     * 数据库端口号
-     */
-    private Integer dbPort = 3306;
+    private String jdbcUrl;
 
     /**
      * 数据库名称
@@ -51,8 +46,8 @@ final public class MysqlQuery extends Query{
     private String dbPassword;
 
 
-    public MysqlQuery(String dbIP , String dbName, String dbUsername, String dbPassword,Convert convert) {
-        this.dbIP = dbIP;
+    public MysqlQuery(String jdbcUrl,String dbName, String dbUsername, String dbPassword,Convert convert) {
+        this.jdbcUrl = jdbcUrl;
         this.dbName = dbName;
         this.dbUsername = dbUsername;
         this.dbPassword = dbPassword;
@@ -69,7 +64,7 @@ final public class MysqlQuery extends Query{
         List<ClassMetaData> metaDataList = Lists.newArrayList();
         try {
             Class.forName(JDBC_DRIVER);
-            connection = connect("jdbc:mysql://"+dbIP+":"+dbPort+"/"+dbName+"?characterEncoding=utf8&useSSL=false",dbUsername,dbPassword);
+            connection = connect(jdbcUrl,dbUsername,dbPassword);
             Statement statement = connection.createStatement();
             /**
              * 源sql
