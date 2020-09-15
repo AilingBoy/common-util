@@ -7,7 +7,7 @@ import java.security.SecureRandom;
 import org.apache.commons.codec.binary.Base64;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  *  AES 加解密
  *

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  * model 层的生成器
  * 使用了 lombok

@@ -1,7 +1,7 @@
 package com.cn.stardust.star;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  *
  * @author stardust

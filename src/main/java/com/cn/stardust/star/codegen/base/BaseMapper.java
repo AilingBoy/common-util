@@ -4,7 +4,7 @@ package com.cn.stardust.star.codegen.base;
 import java.util.List;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  * Mapper 的基类，被其他mapper 实现
  *

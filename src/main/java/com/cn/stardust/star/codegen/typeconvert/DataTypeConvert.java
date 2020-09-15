@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  * 数据库字段类型映射java类型
  *

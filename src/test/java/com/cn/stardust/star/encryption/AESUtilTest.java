@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  *
  * @author stardust

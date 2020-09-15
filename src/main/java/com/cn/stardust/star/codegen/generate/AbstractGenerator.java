@@ -3,7 +3,7 @@ package com.cn.stardust.star.codegen.generate;
 import com.cn.stardust.star.codegen.metadata.ClassMetaData;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  * 生成器中间的抽象类
  *

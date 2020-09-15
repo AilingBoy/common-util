@@ -3,7 +3,7 @@ package com.cn.stardust.star.codegen.base;
 import java.util.List;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  *  Service 的基类，被其他Service 实现
  *

@@ -3,7 +3,7 @@ package com.cn.stardust.star.qrcode;
 import org.junit.Test;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  *
  * @author stardust

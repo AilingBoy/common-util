@@ -44,7 +44,7 @@ public class WordWriter {
         XWPFParagraph titlePara = document.getParagraphs().get(2);
         XWPFRun run = titlePara.createRun();
         RunStyle.setAllRightStyle(run);
-        run.setText("Export By @Oraclexing   Time:"+ LocalDateTime.now().toString(),0);
+        run.setText("Export By @KnowNoUnknown   Time:"+ LocalDateTime.now().toString(),0);
         TableWriter.write(document,metadata);
         try {
             document.write(new FileOutputStream(exportPath+"/"+metadata.getDbName()+".docx"));

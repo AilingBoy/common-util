@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  * 生成器接口
  *
@@ -49,7 +49,7 @@ public interface Generator {
      */
     default String getSignInfo(){
         return "/**" + Character.LINE_FEED+
-                " * https://github.com/oraclexing" + Character.LINE_FEED +
+                " * https://github.com/KnowNoUnknown" + Character.LINE_FEED +
                 " * <p>" + Character.LINE_FEED +
                 " *  代码生成器自动创建" + Character.LINE_FEED +
                 " *" + Character.LINE_FEED +

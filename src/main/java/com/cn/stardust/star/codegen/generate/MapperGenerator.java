@@ -5,7 +5,7 @@ import com.cn.stardust.star.codegen.CamelCaseConvert;
 import java.io.File;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  * mapper 层生成器
  *
@@ -23,7 +23,6 @@ final class MapperGenerator extends AbstractGenerator {
         return "import org.apache.ibatis.annotations.*;"+ Character.LINE_FEED +
                "import org.apache.ibatis.mapping.StatementType;" + Character.LINE_FEED +
                "import com.cn.hz.info.manager.model." + classMetaData.getClassName() +";"+ Character.LINE_FEED +
-//               "import com.cn.stardust.star.codegen.base.BaseMapper;" + Character.LINE_FEED +
                "import java.util.List;"+Character.getLineFeed(2);
     }
 
@@ -77,7 +76,8 @@ final class MapperGenerator extends AbstractGenerator {
         buffer.append(classMetaData.getClassName());
         buffer.append(Character.SPACE + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()));
         buffer.append(");");
-        return buffer.toString();
+        return buffer.toString().replace("#{createAt}","now()").
+                replace("#{updateAt}","now()").replace("#{archive}","0");
     }
 
 
@@ -103,7 +103,7 @@ final class MapperGenerator extends AbstractGenerator {
         buffer.append(Character.LINE_FEED);
         buffer.append(Character.getSpace(12) + "// TODO ADD MORE CONDITIONS! ");
         buffer.append(Character.LINE_FEED);
-        buffer.append(Character.getSpace(12) + "\"update_date = to_date(#{updateDateStr},'yyyy-mm-dd HH24:MI:SS') where archive = 0 and id = #{id} </script>\"})");
+        buffer.append(Character.getSpace(12) + "\"update_at = now() where archive = 0 and id = #{id} </script>\"})");
         buffer.append(Character.LINE_FEED);
         buffer.append(Character.getSpace(4) + "void update" + Character.OPEN_PAREN + classMetaData.getClassName() + Character.SPACE
                 + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())

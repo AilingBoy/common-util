@@ -6,7 +6,7 @@ import com.cn.stardust.star.dbexport.sql.MysqlQuery;
 import com.cn.stardust.star.dbexport.sql.Query;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  *
  * @author stardust

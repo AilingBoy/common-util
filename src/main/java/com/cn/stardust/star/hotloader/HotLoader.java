@@ -3,7 +3,7 @@ package com.cn.stardust.star.hotloader;
 import com.cn.stardust.star.hotloader.listen.FileListener;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  * 动态加载启动入口
  *

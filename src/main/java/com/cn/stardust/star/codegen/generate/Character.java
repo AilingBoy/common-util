@@ -3,7 +3,7 @@ package com.cn.stardust.star.codegen.generate;
 import com.google.common.base.Strings;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  * 生成器中，常见字符集合
  *

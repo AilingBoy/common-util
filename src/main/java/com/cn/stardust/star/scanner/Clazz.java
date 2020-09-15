@@ -2,7 +2,7 @@ package com.cn.stardust.star.scanner;
 
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  *
  * @author stardust

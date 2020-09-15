@@ -6,7 +6,7 @@ import com.google.common.collect.Lists;
 import org.junit.Test;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  * spring 框架代码生成器
  *

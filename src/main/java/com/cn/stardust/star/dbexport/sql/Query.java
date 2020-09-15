@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 import java.util.List;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  * SQL 查询接口
  *

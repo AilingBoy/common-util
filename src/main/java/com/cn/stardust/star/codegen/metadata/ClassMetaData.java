@@ -3,7 +3,7 @@ package com.cn.stardust.star.codegen.metadata;
 import java.util.List;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  *  class 的元数据
  *

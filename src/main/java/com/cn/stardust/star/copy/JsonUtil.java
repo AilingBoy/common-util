@@ -6,7 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import java.util.Iterator;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  *  基于alibaba fastjson 的对象复制，
  *  根据target json字段获取目标字段

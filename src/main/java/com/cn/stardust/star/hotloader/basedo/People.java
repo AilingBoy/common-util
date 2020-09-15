@@ -1,7 +1,7 @@
 package com.cn.stardust.star.hotloader.basedo;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  *  具体实现Live接口类
  *  同时使用内部类Son测试加载情况

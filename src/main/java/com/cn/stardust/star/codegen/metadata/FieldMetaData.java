@@ -1,7 +1,7 @@
 package com.cn.stardust.star.codegen.metadata;
 
 /**
- * https://github.com/oraclexing
+ * https://github.com/KnowNoUnknown
  * <p>
  *  Field 的元数据
  *
