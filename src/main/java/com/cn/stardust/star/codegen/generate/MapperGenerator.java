@@ -85,7 +85,7 @@ final class MapperGenerator extends AbstractGenerator {
         StringBuffer buffer = new StringBuffer();
         buffer.append(Character.getSpace(4) + "@Override"+Character.LINE_FEED);
         buffer.append(Character.getSpace(4) + "@Update(\"update ");
-        buffer.append(classMetaData.getTableName()+",");
+        buffer.append(classMetaData.getTableName());
         buffer.append(" set update_at = now(),archive = 1 where id = #{id} and archive = 0 \")");
         buffer.append(Character.LINE_FEED);
         buffer.append(Character.getSpace(4) + "void delete(String id);");
