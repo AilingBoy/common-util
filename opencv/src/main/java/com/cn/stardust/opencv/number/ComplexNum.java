@@ -23,6 +23,9 @@ public class ComplexNum {
      */
     private double imgValue;
 
+    public ComplexNum() {
+    }
+
     public ComplexNum(double relValue, double imgValue) {
         this.relValue = relValue;
         this.imgValue = imgValue;
@@ -42,5 +45,23 @@ public class ComplexNum {
 
     public void setImgValue(double imgValue) {
         this.imgValue = imgValue;
+    }
+
+    /**
+     * 根方值
+     * @return
+     */
+    public double getSquare(){
+        return Math.sqrt(relValue*relValue + imgValue*imgValue);
+    }
+
+    @Override
+    public String toString() {
+        if(imgValue <= 0){
+            return relValue +
+                    " - " + (-imgValue);
+        }
+        return relValue +
+                " + " + imgValue;
     }
 }

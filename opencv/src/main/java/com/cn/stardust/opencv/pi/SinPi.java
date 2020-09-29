@@ -21,4 +21,6 @@ public class SinPi extends AbstractPi {
         }
         return doubles;
     }
+
+
 }
