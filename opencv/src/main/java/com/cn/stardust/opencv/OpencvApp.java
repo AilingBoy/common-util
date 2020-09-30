@@ -1,5 +1,6 @@
 package com.cn.stardust.opencv;
 
+import com.cn.stardust.opencv.fft.FFT;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
@@ -17,8 +18,21 @@ public class OpencvApp {
     }
 
     public static void main(String[] args) {
-        Mat mat = Imgcodecs.imread("C:\\Users\\14256\\Desktop\\bunny.jpg");
-        Mat outMat = new Mat(mat.rows(),mat.cols(), CvType.CV_8SC3);
+        Mat sourceMat = Imgcodecs.imread("C:\\Users\\14256\\Desktop\\small_bunny.jpg");
+        Mat mat = new Mat(Core.getOptimalDFTSize(sourceMat.rows()),Core.getOptimalDFTSize(sourceMat.cols()), CvType.CV_8UC1);
+        sourceMat.copyTo(mat);
+        FFT fft = new FFT(mat);
+        Mat out =  fft.fftCalculate(0);
+        System.out.println(out.dump());
+        Imgcodecs.imwrite("C:\\Users\\14256\\Desktop\\bunny_F0.jpg",out);
+        System.out.println("============= finished =============");
+    }
+
+    public void splitChannle(){
+        Mat sourceMat = Imgcodecs.imread("C:\\Users\\14256\\Desktop\\bunny.jpg");
+        Mat mat = new Mat(Core.getOptimalDFTSize(sourceMat.rows()),Core.getOptimalDFTSize(sourceMat.cols()), CvType.CV_8SC3);
+        sourceMat.copyTo(mat);
+        Mat outMat = new Mat(Core.getOptimalDFTSize(mat.rows()),Core.getOptimalDFTSize(mat.cols()), CvType.CV_8SC3);
         double[] values;
         for(int i = 0 ; i < mat.rows();i++){
             for(int j = 0 ; j < mat.cols() ; j++){

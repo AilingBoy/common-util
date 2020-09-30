@@ -36,4 +36,8 @@ public abstract class AbstractPi {
         }
         return result;
     }
+
+    public strictfp Double getData(Integer index){
+        return datas.get(index);
+    }
 }
