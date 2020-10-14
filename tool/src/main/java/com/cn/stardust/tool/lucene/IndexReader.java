@@ -2,9 +2,16 @@ package com.cn.stardust.tool.lucene;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.*;
+import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexOptions;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.springframework.util.StopWatch;
@@ -21,8 +28,11 @@ import java.nio.file.Paths;
  */
 public class IndexReader {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
+        search();
+    }
 
+    public void creatIndex(String[] args) {
         // 创建3个News对象
         News news1 = new News();
         news1.setId(1);
@@ -119,5 +129,48 @@ public class IndexReader {
         stopWatch.stop();
         stopWatch.prettyPrint();
         System.out.println("**********索引创建完成**********");
+    }
+
+
+
+
+    public static void search() throws ParseException, IOException {
+        // 搜索单个字段
+        String field = "content";
+        // 搜索多个字段时使用数组
+        //String[] fields = { "title", "content" };
+
+        Path indexPath = Paths.get("newsIndex");
+        Directory dir = FSDirectory.open(indexPath);
+        org.apache.lucene.index.IndexReader reader = DirectoryReader.open(dir);
+        IndexSearcher searcher = new IndexSearcher(reader);
+        //最细粒度分词
+        Analyzer analyzer = new IKAnalyzer(false);
+        QueryParser parser = new QueryParser(field, analyzer);
+
+        // 多域搜索
+        //MultiFieldQueryParser multiParser = new MultiFieldQueryParser(fields, analyzer);
+
+        // 关键字同时成立使用 AND, 默认是 OR
+        parser.setDefaultOperator(QueryParser.Operator.AND);
+        // 查询语句，查询关键词
+        Query query = parser.parse("设想");
+        System.out.println("Query:" + query.toString());
+
+        // 返回前10条
+        TopDocs tds = searcher.search(query, 10);
+        for (ScoreDoc sd : tds.scoreDocs) {
+            // Explanation explanation = searcher.explain(query, sd.doc);
+            // System.out.println("explain:" + explanation + "\n");
+            Document doc = searcher.doc(sd.doc);
+            System.out.println("DocID:" + sd.doc);
+            System.out.println("id:" + doc.get("id"));
+            System.out.println("title:" + doc.get("title"));
+            System.out.println("content:" + doc.get("content"));
+            System.out.println("文档评分:" + sd.score);
+        }
+
+        dir.close();
+        reader.close();
     }
 }
