@@ -60,7 +60,7 @@ public class IndexReader {
         Analyzer analyzer = new IKAnalyzer();
         IndexWriterConfig icw = new IndexWriterConfig(analyzer);
         // CREATE 表示先清空索引再重新创建
-        icw.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
+        icw.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
         Directory dir = null;
         IndexWriter inWriter = null;
         // 存储索引的目录
@@ -142,7 +142,8 @@ public class IndexReader {
 
         Path indexPath = Paths.get("newsIndex");
         Directory dir = FSDirectory.open(indexPath);
-        org.apache.lucene.index.IndexReader reader = DirectoryReader.open(dir);
+        org.apache.lucene.index.DirectoryReader reader = DirectoryReader.open(dir);
+        org.apache.lucene.index.IndexReader newReader = DirectoryReader.openIfChanged(reader);
         IndexSearcher searcher = new IndexSearcher(reader);
         //最细粒度分词
         Analyzer analyzer = new IKAnalyzer(false);
@@ -169,7 +170,6 @@ public class IndexReader {
             System.out.println("content:" + doc.get("content"));
             System.out.println("文档评分:" + sd.score);
         }
-
         dir.close();
         reader.close();
     }
