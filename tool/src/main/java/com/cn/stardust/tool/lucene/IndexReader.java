@@ -25,6 +25,9 @@ import java.nio.file.Paths;
 /**
  * @author stardust
  * @date 2020/10/13 14:57
+ * Lucene
+ * @see IndexWriter
+ *
  */
 public class IndexReader {
 

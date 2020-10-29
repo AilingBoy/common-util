@@ -6,6 +6,12 @@ import org.apache.lucene.index.IndexOptions;
 /**
  * @author stardust
  * @date 2020/10/15 14:51
+ *
+ * FieldTypeConstant 是用于将 {@link News} 的每一个字段，进行配置。
+ *
+ *
+ *
+ *
  */
 public class FieldTypeConstant {
 
@@ -25,11 +31,17 @@ public class FieldTypeConstant {
 
     static {
         BUSINESS_ID = new FieldType();
-        // 是否创建分词
+        /**
+         * 是否创建分词
+         */
         BUSINESS_ID.setTokenized(Boolean.FALSE);
-        // 是否创建索引
+        /**
+         * 是否创建索引
+         */
         BUSINESS_ID.setIndexOptions(IndexOptions.NONE);
-        // 是否存储
+        /**
+         * 是否存储
+         */
         BUSINESS_ID.setStored(Boolean.TRUE);
 
         TITLE = new FieldType();

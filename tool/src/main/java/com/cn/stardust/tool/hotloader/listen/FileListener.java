@@ -133,7 +133,7 @@ public class FileListener {
     private void run(String className) throws Exception {
         Class clazz = FileClassLoader.getClass(className);
         if (Live.class.isAssignableFrom(clazz)) {
-            Live live = (Live) clazz.newInstance();
+            Live live = (Live) clazz.getDeclaredConstructor().newInstance();
             live.run();
         }
     }

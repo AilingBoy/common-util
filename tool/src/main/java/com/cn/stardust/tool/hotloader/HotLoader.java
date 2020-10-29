@@ -25,4 +25,9 @@ public class HotLoader {
         fileListener.listen(dir, interval);
         return Boolean.TRUE;
     }
+
+
+    public static void main(String[] args)throws Exception {
+        start("C:\\Develop\\Project\\common-util\\tool\\src\\main\\java\\com\\cn\\stardust\\tool\\hotloader",2000L);
+    }
 }
