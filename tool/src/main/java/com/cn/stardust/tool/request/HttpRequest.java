@@ -145,4 +145,8 @@ public class HttpRequest extends AbsRequest{
     public String getResponseContent() {
         return responseContent;
     }
+
+    public Integer getResponseCode() {
+        return super.responseCode;
+    }
 }

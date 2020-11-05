@@ -25,12 +25,16 @@ public abstract class AbsRequest {
     protected RequestValues responseHeaders = new RequestValues();
 
     protected HttpURLConnection connection;
+    /**
+     * 响应状态码
+     */
+    protected Integer responseCode;
 
     /**
      * 开始请求
      * @param method
      */
-    public void excute(RequestMethodEnum method)throws Exception{
+    public void execute(RequestMethodEnum method)throws Exception{
         preRequest();
         switch (method) {
             case GET:
@@ -42,6 +46,7 @@ public abstract class AbsRequest {
         }
         //填充响应头
         fillResponseHeader(connection);
+        responseCode = connection.getResponseCode();
         postRequest();
     }
 
