@@ -1,5 +1,6 @@
 package com.cn.stardust.tool.codegen;
 
+import com.cn.stardust.tool.Common;
 import com.cn.stardust.tool.codegen.generate.GeneratorBoot;
 import com.cn.stardust.tool.codegen.metadata.ClassMetaData;
 import com.cn.stardust.tool.codegen.sql.MysqlQuery;
@@ -7,7 +8,9 @@ import com.cn.stardust.tool.codegen.sql.OracleQuery;
 import com.cn.stardust.tool.codegen.sql.Query;
 import com.cn.stardust.tool.codegen.typeconvert.Convert;
 import com.cn.stardust.tool.codegen.typeconvert.DataTypeConvert;
+import org.apache.commons.compress.utils.Lists;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -121,5 +124,13 @@ public class CodeGenerate {
 
     public static Class getClassInfo(){
         return clazz;
+    }
+
+    public static void main(String[] args) {
+        CodeGenerate generate = CodeGenerate.getOracleInstance("127.0.0.1","ORCL","HZDB","HZDB");
+        List<String> tables = new ArrayList<>();
+        tables.add("SYS_LOG");
+        tables.add("SYS_NOTICE");
+        generate.generate(tables,"C:\\Develop\\Project\\common-util\\tool\\src\\main\\java\\com\\cn\\stardust\\tool", Common.class);
     }
 }

@@ -38,7 +38,7 @@ final class MapperGenerator extends AbstractGenerator {
     @Override
     public String getFieldsInfo() {
         StringBuffer buffer = new StringBuffer();
-        buffer.append(Character.getSpace(4)+"String baseColum = \"");
+        buffer.append(Character.getSpace(4)+"String baseColumn = \"");
         classMetaData.getFieldMetaDatas().forEach(e -> buffer.append(e.getName()+','));
         buffer.setCharAt(buffer.length()-1,'\"');
         buffer.append(";");

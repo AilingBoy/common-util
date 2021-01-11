@@ -189,6 +189,13 @@
             <version>1.11.3</version>
         </dependency>
 
+        <!-- 谷歌轻量级表达式执行器，自研流程引擎使用 -->
+        <dependency>
+            <groupId>com.googlecode.aviator</groupId>
+            <artifactId>aviator</artifactId>
+            <version>5.2.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>
