@@ -46,12 +46,12 @@ final public class ServiceGenerator extends AbstractGenerator{
 
         buffer.append(Character.getSpace(4) + "@Override"+ Character.LINE_FEED);
         buffer.append(Character.getSpace(4) + "String add("+classMetaData.getClassName()+ Character.SPACE
-                + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()) + ") throws Exception;");
+                + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName()) + ") throws Exception;");
         buffer.append(Character.getLineFeed(2));
 
         buffer.append(Character.getSpace(4) + "@Override"+ Character.LINE_FEED);
         buffer.append(Character.getSpace(4) + "Boolean modify("+classMetaData.getClassName()+ Character.SPACE
-                + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()) + ") throws Exception;");
+                + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName()) + ") throws Exception;");
         buffer.append(Character.getLineFeed(2));
 
         buffer.append(Character.getSpace(4) + "@Override"+ Character.LINE_FEED);
@@ -63,7 +63,7 @@ final public class ServiceGenerator extends AbstractGenerator{
         buffer.append(Character.getSpace(4) + "List"+ Character.OPEN_ANGULAR_BRACKETS
                 + classMetaData.getClassName() + Character.CLOSE_ANGULAR_BRACKETS
                 + " search("+classMetaData.getClassName()+ Character.SPACE
-                + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()) + ") throws Exception;");
+                + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName()) + ") throws Exception;");
         buffer.append(Character.getLineFeed(2));
 
 

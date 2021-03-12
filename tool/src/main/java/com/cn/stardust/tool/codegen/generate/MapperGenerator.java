@@ -1,8 +1,10 @@
 package com.cn.stardust.tool.codegen.generate;
 
 import com.cn.stardust.tool.codegen.CamelCaseConvert;
+import com.google.common.collect.Lists;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * https://github.com/KnowNoUnknown
@@ -15,6 +17,8 @@ import java.io.File;
 final class MapperGenerator extends AbstractGenerator {
 
     static MapperGenerator  mapperGenerator = new MapperGenerator();
+
+    static List<String> IGNORE_FIELDS = Lists.newArrayList("id","createAt","updateAt","archive");
 
     private MapperGenerator() {}
 
@@ -54,6 +58,7 @@ final class MapperGenerator extends AbstractGenerator {
         buffer.append(getModifyMethod() + Character.getLineFeed(2));
         buffer.append(getSearchMethod() + Character.getLineFeed(2));
         buffer.append(getSelectByIdMethod() + Character.getLineFeed(2));
+        buffer.append(getBatchAddMethod() + Character.getLineFeed(2));
         return buffer.toString();
     }
 
@@ -74,7 +79,7 @@ final class MapperGenerator extends AbstractGenerator {
 //        buffer.append(Character.LINE_FEED);
         buffer.append(Character.getSpace(4) + "void insert(");
         buffer.append(classMetaData.getClassName());
-        buffer.append(Character.SPACE + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()));
+        buffer.append(Character.SPACE + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName()));
         buffer.append(");");
         return buffer.toString().replace("#{createAt}","now()").
                 replace("#{updateAt}","now()").replace("#{archive}","0");
@@ -99,14 +104,22 @@ final class MapperGenerator extends AbstractGenerator {
         buffer.append(Character.getSpace(4) + "@Update({\"<script> update ");
         buffer.append(classMetaData.getTableName()+" set \" +");
         buffer.append(Character.LINE_FEED);
-        buffer.append(Character.getSpace(12)+"\"<if test = 'archive != null'> archive = #{archive},</if>\"+");
-        buffer.append(Character.LINE_FEED);
-        buffer.append(Character.getSpace(12) + "// TODO ADD MORE CONDITIONS! ");
+
+        for(int i = 0 ; i < classMetaData.getFieldMetaDatas().size();i++){
+            if(IGNORE_FIELDS.contains(classMetaData.getFieldMetaDatas().get(i).getFieldName()))continue;
+            buffer.append(Character.getSpace(12)).append("\"<if test = '")
+                    .append(classMetaData.getFieldMetaDatas().get(i).getFieldName())
+                    .append(" != null'> ")
+                    .append(classMetaData.getFieldMetaDatas().get(i).getName())
+                    .append(" =#{").append(classMetaData.getFieldMetaDatas().get(i).getFieldName())
+                    .append("},</if>\" +")
+                    .append(Character.LINE_FEED);
+        }
         buffer.append(Character.LINE_FEED);
         buffer.append(Character.getSpace(12) + "\"update_at = now() where archive = 0 and id = #{id} </script>\"})");
         buffer.append(Character.LINE_FEED);
         buffer.append(Character.getSpace(4) + "void update" + Character.OPEN_PAREN + classMetaData.getClassName() + Character.SPACE
-                + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
+                + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName())
                 + Character.COLSE_PAREN + Character.SEMICOLON);
         return buffer.toString();
     }
@@ -126,7 +139,7 @@ final class MapperGenerator extends AbstractGenerator {
         buffer.append(Character.getSpace(4) + "List"+ Character.OPEN_ANGULAR_BRACKETS + classMetaData.getClassName()+ Character.CLOSE_ANGULAR_BRACKETS);
         buffer.append(Character.SPACE);
         buffer.append("select"+ Character.OPEN_PAREN + classMetaData.getClassName() + Character.SPACE
-                + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
+                + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName())
                 + Character.COLSE_PAREN + Character.SEMICOLON);
         return buffer.toString();
     }
@@ -145,5 +158,50 @@ final class MapperGenerator extends AbstractGenerator {
     @Override
     public String getFileName() {
         return outputPath + File.separator + classMetaData.getClassName()+"Mapper.java";
+    }
+
+    /**
+     * 批量添加接口
+     * @return
+     */
+    private String getBatchAddMethod(){
+        StringBuffer buffer = new StringBuffer();
+        buffer.append(Character.getSpace(4) + "@Insert({\"<script> insert into ");
+        buffer.append(classMetaData.getTableName()+"(");
+        buffer.append(classMetaData.getFieldMetaDatas().stream().map(e -> e.getName()).reduce((a,b)->a+","+b).get());
+        buffer.append(") ");
+        buffer.append("values\" +");
+        buffer.append(Character.LINE_FEED);
+        buffer.append(Character.getSpace(12));
+        buffer.append("\"<foreach collection='")
+                .append(CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName()))
+                .append("s' index='index' item='")
+                .append(CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName()))
+                .append("' separator=',' >\" +")
+                .append(Character.LINE_FEED)
+                .append(Character.getSpace(14)).append("\"(");
+        buffer.append("#{").append(CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName()))
+                .append(".").append("id},");
+        buffer.append("now(),now(),0,");
+        for(int i = 0 ; i < classMetaData.getFieldMetaDatas().size();i++){
+            if(IGNORE_FIELDS.contains(classMetaData.getFieldMetaDatas().get(i).getFieldName()))continue;
+            buffer.append("#{").append(CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName()))
+                    .append(".").append(classMetaData.getFieldMetaDatas().get(i).getFieldName())
+                    .append("},");
+        }
+        buffer.setCharAt(buffer.length()-1,')');
+        buffer.append("\"").append("+");
+        buffer.append(Character.LINE_FEED).append(Character.getSpace(12))
+                .append("\"</foreach>\"+").append(Character.LINE_FEED)
+                .append(Character.getSpace(8))
+                .append("\"</script>\"})").append(Character.LINE_FEED);
+        buffer.append(Character.getSpace(4) + "void insert(")
+                .append("@Param(\"").append(CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName())).append("s")
+                .append("\")List<");
+        buffer.append(classMetaData.getClassName()).append("> ");
+        buffer.append(Character.SPACE + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName())).append("s");
+        buffer.append(");");
+        return buffer.toString().replace("#{createAt}","now()").
+                replace("#{updateAt}","now()").replace("#{archive}","0");
     }
 }

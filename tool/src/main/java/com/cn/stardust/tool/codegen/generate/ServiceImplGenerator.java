@@ -39,7 +39,7 @@ final public class ServiceImplGenerator extends AbstractGenerator {
     public String getFieldsInfo() {
         return Character.getSpace(4) + "@Autowired" + Character.LINE_FEED
                 + Character.getSpace(4) + "private "+ classMetaData.getClassName() + "Mapper "
-                + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()) + "Mapper " + Character.SEMICOLON
+                + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName()) + "Mapper " + Character.SEMICOLON
                 + Character.getLineFeed(2) ;
     }
 
@@ -57,25 +57,25 @@ final public class ServiceImplGenerator extends AbstractGenerator {
     private String getAddMethod(){
         return Character.getSpace(4)+"@Override"+ Character.LINE_FEED
                 + Character.getSpace(4)+"public String add(" + classMetaData.getClassName() + Character.SPACE
-                + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()) + Character.COLSE_PAREN
+                + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName()) + Character.COLSE_PAREN
                 + "throws Exception " + Character.OPEN_BRACE + Character.LINE_FEED
-                + Character.getSpace(8)+"if"+Character.OPEN_PAREN+"StringUtils.isEmpty"+Character.OPEN_PAREN+CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
+                + Character.getSpace(8)+"if"+Character.OPEN_PAREN+"StringUtils.isEmpty"+Character.OPEN_PAREN+CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName())
                 +".getId()"+Character.COLSE_PAREN+Character.COLSE_PAREN+Character.OPEN_BRACE+Character.LINE_FEED
-                +Character.getSpace(12) + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
+                +Character.getSpace(12) + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName())
                 +".generateId()"+Character.SEMICOLON + Character.LINE_FEED
                 +Character.getSpace(8)+Character.CLOSE_BRACE + Character.LINE_FEED
-                + Character.getSpace(8) + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
-                + "Mapper.insert" + Character.OPEN_PAREN + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
+                + Character.getSpace(8) + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName())
+                + "Mapper.insert" + Character.OPEN_PAREN + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName())
                 + Character.COLSE_PAREN + Character.SEMICOLON + Character.LINE_FEED
                 + Character.getSpace(8) + "return "
-                + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())+".getId()" + Character.SEMICOLON + Character.LINE_FEED
+                + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName())+".getId()" + Character.SEMICOLON + Character.LINE_FEED
                 + Character.getSpace(4) + Character.CLOSE_BRACE;
     }
 
     private String getRemoveMethod(){
         return Character.getSpace(4) + "@Override"+ Character.LINE_FEED
                 + Character.getSpace(4) + "public Boolean remove(String id)throws Exception " + Character.OPEN_BRACE + Character.LINE_FEED
-                + Character.getSpace(8) +CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
+                + Character.getSpace(8) +CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName())
                 + "Mapper.delete(id)"
                 + Character.SEMICOLON + Character.LINE_FEED
                 + Character.getSpace(8) + "return Boolean.TRUE" + Character.SEMICOLON + Character.LINE_FEED
@@ -85,10 +85,10 @@ final public class ServiceImplGenerator extends AbstractGenerator {
     private String getModifyMethod(){
         return Character.getSpace(4) + "@Override"+ Character.LINE_FEED
                 + Character.getSpace(4) + "public Boolean modify" + Character.OPEN_PAREN + classMetaData.getClassName() + Character.SPACE
-                + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()) + Character.COLSE_PAREN
+                + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName()) + Character.COLSE_PAREN
                 + "throws Exception " + Character.OPEN_BRACE + Character.LINE_FEED
-                + Character.getSpace(8) +CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
-                + "Mapper.update" + Character.OPEN_PAREN + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
+                + Character.getSpace(8) +CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName())
+                + "Mapper.update" + Character.OPEN_PAREN + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName())
                 + Character.COLSE_PAREN + Character.SEMICOLON + Character.LINE_FEED
                 + Character.getSpace(8) + "return Boolean.TRUE" + Character.SEMICOLON + Character.LINE_FEED
                 + Character.getSpace(4) + Character.CLOSE_BRACE;
@@ -99,11 +99,11 @@ final public class ServiceImplGenerator extends AbstractGenerator {
                 + Character.getSpace(4) + "public List"+ Character.OPEN_ANGULAR_BRACKETS
                 + classMetaData.getClassName() + Character.CLOSE_ANGULAR_BRACKETS + Character.SPACE
                 + "search"+ Character.OPEN_PAREN + classMetaData.getClassName() + Character.SPACE
-                + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()) + Character.COLSE_PAREN
+                + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName()) + Character.COLSE_PAREN
                 + "throws Exception " + Character.OPEN_BRACE + Character.LINE_FEED
-                + Character.getSpace(8) + "return" + Character.SPACE + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
+                + Character.getSpace(8) + "return" + Character.SPACE + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName())
                 + "Mapper.select"+ Character.OPEN_PAREN
-                + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()) + Character.COLSE_PAREN
+                + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName()) + Character.COLSE_PAREN
                 + Character.SEMICOLON + Character.LINE_FEED
                 + Character.getSpace(4) + Character.CLOSE_BRACE;
     }
@@ -113,7 +113,7 @@ final public class ServiceImplGenerator extends AbstractGenerator {
                 + Character.getSpace(4) + "public" + Character.SPACE + classMetaData.getClassName()+ Character.SPACE
                 +"get(String id)throws Exception" + Character.SPACE + Character.OPEN_BRACE + Character.LINE_FEED
                 + Character.getSpace(8) + "return" + Character.SPACE
-                + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
+                + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName())
                 + "Mapper.selectById(id)"
                 + Character.SEMICOLON + Character.LINE_FEED
                 + Character.getSpace(4) + Character.CLOSE_BRACE;

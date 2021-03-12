@@ -10,31 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>tool</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <name>tool</name>
-    <description>common-utils is a tools to providing basic operation lib</description>
-    <url>https://github.com/oraclexing/common-util/</url>
-    <organization>
-        <name>com.github.oraclexing</name>
-        <url>https://github.com/oraclexing</url>
-    </organization>
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-        </license>
-    </licenses>
-    <developers>
-        <developer>
-            <name>stardust</name>
-            <email>1425630563@qq.com</email>
-        </developer>
-    </developers>
-    <scm>
-        <connection>scm:git:git@github.com/oraclexing/common-util.git</connection>
-        <developerConnection>scm:git:git@github.com:oraclexing/common-util.git</developerConnection>
-        <url>git@github.com:oraclexing/common-util.git</url>
-    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
