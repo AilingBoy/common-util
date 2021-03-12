@@ -22,7 +22,7 @@ final class MapperGenerator extends AbstractGenerator {
     public String getImportInfo() {
         return "import org.apache.ibatis.annotations.*;"+ Character.LINE_FEED +
                "import org.apache.ibatis.mapping.StatementType;" + Character.LINE_FEED +
-               "import com.cn.hz.info.manager.model." + classMetaData.getClassName() +";"+ Character.LINE_FEED +
+//               "import com.cn.hz.info.manager.model." + classMetaData.getClassName() +";"+ Character.LINE_FEED +
                "import java.util.List;"+ Character.getLineFeed(2);
     }
 
@@ -72,7 +72,7 @@ final class MapperGenerator extends AbstractGenerator {
         buffer.append(Character.LINE_FEED);
 //        buffer.append(Character.getSpace(4) + "@SelectKey(before=false,keyProperty=\"id\",resultType=Long.class,statementType= StatementType.STATEMENT,statement=\"SELECT LAST_INSERT_ID() AS id\")");
 //        buffer.append(Character.LINE_FEED);
-        buffer.append(Character.getSpace(4) + "String insert(");
+        buffer.append(Character.getSpace(4) + "void insert(");
         buffer.append(classMetaData.getClassName());
         buffer.append(Character.SPACE + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()));
         buffer.append(");");

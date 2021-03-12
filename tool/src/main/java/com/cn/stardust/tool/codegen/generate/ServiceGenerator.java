@@ -2,6 +2,7 @@ package com.cn.stardust.tool.codegen.generate;
 
 import com.cn.stardust.tool.codegen.CamelCaseConvert;
 
+import javax.print.DocFlavor;
 import java.io.File;
 
 /**
@@ -21,8 +22,9 @@ final public class ServiceGenerator extends AbstractGenerator{
     @Override
     public String getImportInfo() {
 //        return "import com.cn.stardust.star.codegen.base.BaseService;" + Character.LINE_FEED+
-        return "import com.cn.hz.info.manager.model." + classMetaData.getClassName() +";"+ Character.LINE_FEED +
-             "import java.util.List;"+ Character.getLineFeed(2);
+//        return "import com.cn.hz.info.manager.model." + classMetaData.getClassName() +";"+ Character.LINE_FEED +
+//             "import java.util.List;"+ Character.getLineFeed(2);
+          return "import java.util.List;"+ Character.getLineFeed(2);
     }
 
     @Override

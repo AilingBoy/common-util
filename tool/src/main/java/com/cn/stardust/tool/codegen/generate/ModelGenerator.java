@@ -28,7 +28,7 @@ final public class ModelGenerator extends AbstractGenerator {
     @Override
     public String getImportInfo() {
         return "import lombok.Data" + Character.SEMICOLON + Character.LINE_FEED +
-               "import com.cn.stardust.star.codegen.base.BaseModel" + Character.SEMICOLON +
+//               "import com.cn.stardust.star.codegen.base.BaseModel" + Character.SEMICOLON +
                 Character.getLineFeed(2);
     }
 

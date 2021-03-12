@@ -22,7 +22,8 @@ final public class ServiceImplGenerator extends AbstractGenerator {
     public String getImportInfo() {
         return "import org.springframework.beans.factory.annotation.Autowired;" + Character.LINE_FEED +
                "import org.springframework.stereotype.Service;" + Character.LINE_FEED +
-               "import com.cn.hz.info.manager.model." + classMetaData.getClassName() +";"+ Character.LINE_FEED +
+//                "import com.cn.hz.info.manager.model." + classMetaData.getClassName() +";"+ Character.LINE_FEED +
+               "import org.springframework.util.StringUtils;"+ Character.LINE_FEED +
                "import java.util.List;"+ Character.getLineFeed(2);
     }
 
@@ -58,6 +59,11 @@ final public class ServiceImplGenerator extends AbstractGenerator {
                 + Character.getSpace(4)+"public String add(" + classMetaData.getClassName() + Character.SPACE
                 + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName()) + Character.COLSE_PAREN
                 + "throws Exception " + Character.OPEN_BRACE + Character.LINE_FEED
+                + Character.getSpace(8)+"if"+Character.OPEN_PAREN+"StringUtils.isEmpty"+Character.OPEN_PAREN+CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
+                +".getId()"+Character.COLSE_PAREN+Character.COLSE_PAREN+Character.OPEN_BRACE+Character.LINE_FEED
+                +Character.getSpace(12) + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
+                +".generateId()"+Character.SEMICOLON + Character.LINE_FEED
+                +Character.getSpace(8)+Character.CLOSE_BRACE + Character.LINE_FEED
                 + Character.getSpace(8) + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
                 + "Mapper.insert" + Character.OPEN_PAREN + CamelCaseConvert.toLowerCamelCase(classMetaData.getClassName())
                 + Character.COLSE_PAREN + Character.SEMICOLON + Character.LINE_FEED
