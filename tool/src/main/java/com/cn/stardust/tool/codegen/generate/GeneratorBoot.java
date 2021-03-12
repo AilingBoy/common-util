@@ -39,6 +39,7 @@ final public class GeneratorBoot extends AbstractGenerator{
                 .newArrayList(MapperGenerator.mapperGenerator,
                         ServiceGenerator.serviceGenerator,
                         ModelGenerator.modelGenerator,
+                        ControllerGenerator.controllerGenerator,
                         ServiceImplGenerator.serviceImplGenerator));
         if(null == generatorBoot){
             generatorBoot = new GeneratorBoot();

@@ -1,5 +1,7 @@
 package com.cn.stardust.tool.codegen;
 
+import java.util.Arrays;
+
 /**
  * https://github.com/KnowNoUnknown
  * <p>
@@ -45,5 +47,18 @@ final public class CamelCaseConvert {
         buffer.append((content.charAt(0)+"").toUpperCase());
         buffer.append(toLowerCamelCase(content.substring(1)));
         return buffer.toString();
+    }
+
+    /**
+     * 下划线字符串转url
+     * @param content
+     * @return
+     */
+    public static String toURLCase(String content){
+        if(null == content){
+            return null;
+        }
+        String[] values = content.split("_");
+        return Arrays.stream(values).reduce((a,b)->a.toLowerCase()+"/"+b.toLowerCase()).get();
     }
 }
