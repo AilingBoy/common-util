@@ -37,6 +37,7 @@ final public class DataTypeConvert implements Convert{
         dataTypeMap.put("text", String.class);
         dataTypeMap.put("time", Date.class);
         // Oracle 字段转换
+        dataTypeMap.put("clob",String.class);
         dataTypeMap.put("varchar2",String.class);
         dataTypeMap.put("number(1)",Boolean.class);
         dataTypeMap.put("number(2)",Byte.class);

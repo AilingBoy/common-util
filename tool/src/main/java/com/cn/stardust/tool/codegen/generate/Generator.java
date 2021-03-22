@@ -94,11 +94,13 @@ public interface Generator {
      * 生成器入口
      */
     default void generate(){
-        metaDatas.forEach(e ->
+        metaDatas.forEach(e ->{
+            System.out.println("创建表对象："+e.getTableName());
                 generators.forEach(f ->{
                 f.setClassMetaData(e);
                 genWriteToFile(f);
-            })
+            });
+            System.out.println("表对象创建完毕："+e.getTableName());}
         );
         System.out.println("************* Generate successful *************");
     }
