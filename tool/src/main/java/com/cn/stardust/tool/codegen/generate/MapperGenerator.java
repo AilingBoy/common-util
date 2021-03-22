@@ -75,14 +75,12 @@ final class MapperGenerator extends AbstractGenerator {
         buffer.append(")");
         buffer.append("\")");
         buffer.append(Character.LINE_FEED);
-//        buffer.append(Character.getSpace(4) + "@SelectKey(before=false,keyProperty=\"id\",resultType=Long.class,statementType= StatementType.STATEMENT,statement=\"SELECT LAST_INSERT_ID() AS id\")");
-//        buffer.append(Character.LINE_FEED);
         buffer.append(Character.getSpace(4) + "void insert(");
         buffer.append(classMetaData.getClassName());
         buffer.append(Character.SPACE + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName()));
         buffer.append(");");
-        return buffer.toString().replace("#{createAt}","now()").
-                replace("#{updateAt}","now()").replace("#{archive}","0");
+        return buffer.toString().replace("#{createAt}","sysdate").
+                replace("#{updateAt}","sysdate").replace("#{archive}","0");
     }
 
 
@@ -91,7 +89,7 @@ final class MapperGenerator extends AbstractGenerator {
         buffer.append(Character.getSpace(4) + "@Override"+ Character.LINE_FEED);
         buffer.append(Character.getSpace(4) + "@Update(\"update ");
         buffer.append(classMetaData.getTableName());
-        buffer.append(" set update_at = now(),archive = 1 where id = #{id} and archive = 0 \")");
+        buffer.append(" set update_at = sysdate,archive = 1 where id = #{id} and archive = 0 \")");
         buffer.append(Character.LINE_FEED);
         buffer.append(Character.getSpace(4) + "void delete(String id);");
         return buffer.toString();
@@ -116,7 +114,7 @@ final class MapperGenerator extends AbstractGenerator {
                     .append(Character.LINE_FEED);
         }
         buffer.append(Character.LINE_FEED);
-        buffer.append(Character.getSpace(12) + "\"update_at = now() where archive = 0 and id = #{id} </script>\"})");
+        buffer.append(Character.getSpace(12) + "\"update_at = sysdate where archive = 0 and id = #{id} </script>\"})");
         buffer.append(Character.LINE_FEED);
         buffer.append(Character.getSpace(4) + "void update" + Character.OPEN_PAREN + classMetaData.getClassName() + Character.SPACE
                 + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName())
@@ -182,7 +180,7 @@ final class MapperGenerator extends AbstractGenerator {
                 .append(Character.getSpace(14)).append("\"(");
         buffer.append("#{").append(CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName()))
                 .append(".").append("id},");
-        buffer.append("now(),now(),0,");
+        buffer.append("sysdate,sysdate,0,");
         for(int i = 0 ; i < classMetaData.getFieldMetaDatas().size();i++){
             if(IGNORE_FIELDS.contains(classMetaData.getFieldMetaDatas().get(i).getFieldName()))continue;
             buffer.append("#{").append(CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName()))
@@ -201,7 +199,7 @@ final class MapperGenerator extends AbstractGenerator {
         buffer.append(classMetaData.getClassName()).append("> ");
         buffer.append(Character.SPACE + CamelCaseConvert.toLowerCamelCase(classMetaData.getTableName())).append("s");
         buffer.append(");");
-        return buffer.toString().replace("#{createAt}","now()").
-                replace("#{updateAt}","now()").replace("#{archive}","0");
+        return buffer.toString().replace("#{createAt}","sysdate").
+                replace("#{updateAt}","sysdate").replace("#{archive}","0");
     }
 }
